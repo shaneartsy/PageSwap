@@ -32,7 +32,6 @@ gem 'font-awesome-sass', '~> 5.6.1'
 gem 'simple_form'
 gem 'devise'
 
-gem 'simple_form'
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'
   gem 'dotenv-rails'
