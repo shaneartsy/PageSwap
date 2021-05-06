@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_06_120915) do
+ActiveRecord::Schema.define(version: 2021_05_06_123027) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,13 +59,10 @@ ActiveRecord::Schema.define(version: 2021_05_06_120915) do
     t.bigint "user_id", null: false
     t.bigint "book_id", null: false
     t.text "content"
-    t.bigint "nodes_id"
-    t.bigint "parent_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "parent_id"
     t.index ["book_id"], name: "index_comments_on_book_id"
-    t.index ["nodes_id"], name: "index_comments_on_nodes_id"
-    t.index ["parent_id"], name: "index_comments_on_parent_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
@@ -121,6 +118,7 @@ ActiveRecord::Schema.define(version: 2021_05_06_120915) do
   add_foreign_key "chatrooms", "users", column: "user1_id"
   add_foreign_key "chatrooms", "users", column: "user2_id"
   add_foreign_key "comments", "books"
+  add_foreign_key "comments", "comments", column: "parent_id"
   add_foreign_key "comments", "users"
   add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users"
