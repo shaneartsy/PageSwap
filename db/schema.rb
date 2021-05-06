@@ -10,10 +10,97 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_06_111935) do
+ActiveRecord::Schema.define(version: 2021_05_06_120915) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "book_reviews", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "book_id", null: false
+    t.text "content"
+    t.integer "rating"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["book_id"], name: "index_book_reviews_on_book_id"
+    t.index ["user_id"], name: "index_book_reviews_on_user_id"
+  end
+
+  create_table "books", force: :cascade do |t|
+    t.string "title"
+    t.string "author"
+    t.string "summary"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "catalog_items", force: :cascade do |t|
+    t.string "quality"
+    t.text "user_summary"
+    t.boolean "available"
+    t.bigint "user_id", null: false
+    t.bigint "book_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["book_id"], name: "index_catalog_items_on_book_id"
+    t.index ["user_id"], name: "index_catalog_items_on_user_id"
+  end
+
+  create_table "chatrooms", force: :cascade do |t|
+    t.bigint "user1_id"
+    t.bigint "user2_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user1_id"], name: "index_chatrooms_on_user1_id"
+    t.index ["user2_id"], name: "index_chatrooms_on_user2_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "book_id", null: false
+    t.text "content"
+    t.bigint "nodes_id"
+    t.bigint "parent_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["book_id"], name: "index_comments_on_book_id"
+    t.index ["nodes_id"], name: "index_comments_on_nodes_id"
+    t.index ["parent_id"], name: "index_comments_on_parent_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "chatroom_id", null: false
+    t.text "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "requests", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "status"
+    t.bigint "buyer_item_id"
+    t.bigint "seller_item_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["buyer_item_id"], name: "index_requests_on_buyer_item_id"
+    t.index ["seller_item_id"], name: "index_requests_on_seller_item_id"
+    t.index ["user_id"], name: "index_requests_on_user_id"
+  end
+
+  create_table "user_reviews", force: :cascade do |t|
+    t.text "content"
+    t.integer "rating"
+    t.bigint "author_id"
+    t.bigint "receiver_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["author_id"], name: "index_user_reviews_on_author_id"
+    t.index ["receiver_id"], name: "index_user_reviews_on_receiver_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -27,4 +114,19 @@ ActiveRecord::Schema.define(version: 2021_05_06_111935) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "book_reviews", "books"
+  add_foreign_key "book_reviews", "users"
+  add_foreign_key "catalog_items", "books"
+  add_foreign_key "catalog_items", "users"
+  add_foreign_key "chatrooms", "users", column: "user1_id"
+  add_foreign_key "chatrooms", "users", column: "user2_id"
+  add_foreign_key "comments", "books"
+  add_foreign_key "comments", "users"
+  add_foreign_key "messages", "chatrooms"
+  add_foreign_key "messages", "users"
+  add_foreign_key "requests", "catalog_items", column: "buyer_item_id"
+  add_foreign_key "requests", "catalog_items", column: "seller_item_id"
+  add_foreign_key "requests", "users"
+  add_foreign_key "user_reviews", "users", column: "author_id"
+  add_foreign_key "user_reviews", "users", column: "receiver_id"
 end
