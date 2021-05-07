@@ -9,7 +9,6 @@ puts "creating book seeds"
   file = URI.open("https://www.googleapis.com/books/v1/volumes?q=#{Faker::Book.title}").read
   book_response = JSON.parse(file)
   book = book_response['items'].first['volumeInfo']
-  book
   title = book['title']
   puts "adding #{title} to books"
   author = book['authors']
