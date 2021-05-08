@@ -46,7 +46,7 @@ puts "creating book seeds"
     rating = book['averageRating']
   end
   new_book = Book.new(title: title, author: author, summary: description, category: category, rating: rating)
-  if book['imageLinks']['thumbnail']
+  if book['imageLinks']
     image_url = book['imageLinks']['thumbnail']
     file_image = URI.open(image_url)
     new_book.photo.attach(io: file_image, filename: "nes.png", content_type: 'image/png')
