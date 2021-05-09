@@ -1,9 +1,9 @@
 class BooksController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:show]
+  skip_before_action :authenticate_user!, only: %i[show new create]
 
   def show
     @book_review = BookReview.new
-    @users = User.all.filter { |user| user != current_user}
+    @users = User.all.filter { |user| user != current_user }
     @book = Book.find(params[:id])
   end
 
@@ -15,6 +15,7 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
     if @book.save
       flash[:notice] = "Book has been added"
+      redirect_to root_path
     else
       render :new
     end
@@ -23,8 +24,7 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :author,
-                                 :summary, :category,
-                                 :rating)
+    params.require(:book).permit(:title, :author, :summary,
+                                 :category, :rating)
   end
 end
