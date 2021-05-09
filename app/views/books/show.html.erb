@@ -8,7 +8,7 @@
         <p><span class="bold">Title:</span> <%= @book.title %></p>
         <p><span class="bold">Author:</span> <%= @book.author %></p>
         <p><span class="bold">Category:</span> <%= @book.category %></p>
-        <button type="button" class="btn btn-modal"><%= link_to "Swap", user_show_swap(requests.book.user), class: "btn-modal" %></button>
+        <button type="button" class="btn btn-primary"><%= link_to "Swap", catalog_item_requests_path(@catalog_item), method: :post, class: "btn-primary" %></button>
       </div>
 
     </div>
