@@ -1,19 +1,25 @@
 <div class="book-header">
   <div class="book-header-left">
     <div class="book-header-left-top">
+
       <%= cl_image_tag(@book.photo.key, crop: :fill, height: 120, class: "product-img") %>
+
       <div class="book-info">
         <p><span class="bold">Title:</span> <%= @book.title %></p>
         <p><span class="bold">Author:</span> <%= @book.author %></p>
         <p><span class="bold">Category:</span> <%= @book.category %></p>
         <button type="button" class="btn btn-modal"><%= link_to "Swap", user_show_swap(requests.book.user), class: "btn-modal" %></button>
       </div>
+
     </div>
     <div class="book-header-left-bottom">
+
       <p><%= @book.summary %></p>
+
     </div>
   </div>
   <div class="book-header-right">
+
     <ul>
       <% @users.each do |user| %>
         <li class="distance-list">
@@ -22,17 +28,35 @@
         </li>
       <% end %>
     </ul>
+
   </div>
 </div>
 <div class="reviews">
+
   <h4>Reviews</h4>
-  <% if @book.book_reviews.length != 0 %>
-    <% @book.book_reviews.each do |review| %>
-      <div class="book-review">
-        <p><%= review.user.first_name %> -- <%= review.content %></p>
-      </div>
+  <% if user_signed_in? %>
+    <%= simple_form_for ([@book, @book_review]), remote: true, html: { autocomplete: 'off' } do |f| %>
+      <%= f.input :content, label: false, class: "review_input", placeholder: 'Write a review' %>
+      <%= f.input :rating, collection: 1..5, selected: 5, class: "rating-input" %>
+      <%= f.button :submit, "Post" %>
     <% end %>
   <% else %>
-    <p>There have been no reviews published yet</p>
+    <h6>Must be logged in to create a review</h6>
   <% end %>
+
+  <div class="book_reviews mt-3">
+    <% if @book.book_reviews.length != 0 %>
+
+      <% @book.book_reviews.reverse.each do |review| %>
+        <div class="book-review" id="review-<%= review.id %>">
+          <p><%= review.user.first_name %> -- <%= review.content %></p>
+        </div>
+      <% end %>
+
+    <% else %>
+
+      <p>There have been no reviews published yet</p>
+
+    <% end %>
+  </div>
 </div>
