@@ -1,6 +1,9 @@
 <div>
   <h2>User: <%= @user.first_name %></h2>
   <div class="product-cards">
+    <div class="create mt-3">
+      <%= link_to "Add new book",  new_book_path, class: "btn-primary" %>
+    </div>
     <% @items.each do |item| %>
       <% if item.available %>
         <%= link_to book_path(item.book) do %>
