@@ -1,7 +1,9 @@
 class BooksController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[show new create]
+  skip_before_action :authenticate_user!, only: [:show]
+
   def show
-    @users = User.all.filter { |user| user != current_user }
+    @book_review = BookReview.new
+    @users = User.all.filter { |user| user != current_user}
     @book = Book.find(params[:id])
   end
 
