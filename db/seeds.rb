@@ -103,9 +103,10 @@ puts "finished creating comments"
 
 puts "creating messages"
 
-20.times do
-  user = User.all.sample
-  Message.create!(user: user, chatroom: user.chatrooms.sample, content: Faker::Lorem.paragraph(sentence_count: rand(1..4)))
+5.times do
+  Chatroom.all.each do |room|
+    Message.create!(user: rand(1..2) == 1 ? room.user1 : room.user2, chatroom: room, content: Faker::Lorem.paragraph(sentence_count: rand(1..4)))
+  end
 end
 
 puts "finished creating messages"
