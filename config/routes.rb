@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
-  resources :books, only: [:show]
+  resources :books, only: [:show] do
+    resources :book_reviews, only: [:create]
+  end
   resources :users do
     resources :catalog_items, only: [:index]
   end

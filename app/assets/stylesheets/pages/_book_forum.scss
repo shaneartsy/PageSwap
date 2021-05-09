@@ -5,9 +5,14 @@
   margin-top: 15px;
 }
 
+.review_input {
+  height: 100px;
+}
+
 .book-header-left {
   box-shadow: 1px 1px 1px rgba(40,40,40,.2);
   width: 240px;
+  padding: 5px;
 }
 
 .book-header-left-bottom p {
@@ -66,6 +71,15 @@
   align-items: center;
 }
 
+.rating-input{
+  margin-top: 6px;
+}
+
 .reviews p {
   font-size: 12px;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
 }
