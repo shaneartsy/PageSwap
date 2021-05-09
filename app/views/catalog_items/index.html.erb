@@ -1,10 +1,29 @@
 <div>
-  <% i = 1 %>
   <h2>User: <%= @user.first_name %></h2>
-  <% @items.each do |item| %>
-    <div>
-      <p>Book <%= i %>: <%= item.book.title %></p>
-    </div>
-    <% i += 1 %>
-  <% end %>
+  <div class="product-cards">
+    <% @items.each do |item| %>
+      <% if item.available %>
+        <div class="product-card">
+          <div class="product-details">
+            <div class="product-details1">
+              <div class="product-p">
+                <p>Title: <%= item.book.title %></p>
+                <p>Author: <%= item.book.author %></p>
+                <p>Category: <%= item.book.category %></p>
+              </div>
+              <div>
+                <p class="bold">Condition: <%= item.quality %></p>
+              </div>
+            </div>
+            <div class="product-details2">
+              <% if item.book.photo.attached? %>
+                <%= cl_image_tag(item.book.photo.key, crop: :fill, height: 100, class: "product-img") %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
 </div>
+
