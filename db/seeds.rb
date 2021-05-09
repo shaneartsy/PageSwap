@@ -28,31 +28,36 @@ puts "creating book seeds"
 
 40.times do
   puts "parsing API"
-  file = URI.open("https://www.googleapis.com/books/v1/volumes?q=#{Faker::Book.title}").read
-  book_response = JSON.parse(file)
-  book = book_response['items'].first['volumeInfo']
-  title = book['title']
-  puts "adding #{title} to books"
-  author = book['authors']
-  if author
-    author = author.first
+  fake_book = Faker::Book.title
+  if Book.all.any? { |book| book.title == fake_book }
+    break
+  else
+    file = URI.open("https://www.googleapis.com/books/v1/volumes?q=#{fake_book}").read
+    book_response = JSON.parse(file)
+    book = book_response['items'].first['volumeInfo']
+    title = Faker::Book.title
+    puts "adding #{title} to books"
+    author = book['authors']
+    if author
+      author = author.first
+    end
+    description = book['description']
+    category = book["categories"]
+    if category
+      category = category.first
+    end
+    if book['averageRating']
+      rating = book['averageRating']
+    end
+    new_book = Book.new(title: title, author: author, summary: description, category: category, rating: rating)
+    if book['imageLinks']
+      image_url = book['imageLinks']['thumbnail']
+      file_image = URI.open(image_url)
+      new_book.photo.attach(io: file_image, filename: "nes.png", content_type: 'image/png')
+    end
+    new_book.save
+    puts "saved #{title} to books"
   end
-  description = book['description']
-  category = book["categories"]
-  if category
-    category = category.first
-  end
-  if book['averageRating']
-    rating = book['averageRating']
-  end
-  new_book = Book.new(title: title, author: author, summary: description, category: category, rating: rating)
-  if book['imageLinks']
-    image_url = book['imageLinks']['thumbnail']
-    file_image = URI.open(image_url)
-    new_book.photo.attach(io: file_image, filename: "nes.png", content_type: 'image/png')
-  end
-  new_book.save
-  puts "saved #{title} to books"
 end
 
 puts "finished book seeds"
