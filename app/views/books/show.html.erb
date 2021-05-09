@@ -46,7 +46,7 @@
   <div class="book_reviews mt-3">
     <% if @book.book_reviews.length != 0 %>
 
-      <% @book.book_reviews.each do |review| %>
+      <% @book.book_reviews.reverse.each do |review| %>
         <div class="book-review" id="review-<%= review.id %>">
           <p><%= review.user.first_name %> -- <%= review.content %></p>
         </div>
