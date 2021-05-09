@@ -5,5 +5,8 @@ Rails.application.routes.draw do
   resources :users do
     resources :catalog_items, only: [:index]
   end
+  resources :catalog_items do
+    resources :requests, only: [:create]
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
