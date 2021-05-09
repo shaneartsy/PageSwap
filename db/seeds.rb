@@ -17,11 +17,11 @@ puts "creating users"
 
 User.create!(email: 'dg@gmail.com', password: 123456, first_name: "Daniel", address: "13 shimshon, Jerusalem")
 puts "created Daniel"
-User.create!(email: 'mm@gmail.com', password: 123456, first_name: "Moshe", address: "8 ahad ahaam")
+User.create!(email: 'mm@gmail.com', password: 123456, first_name: "Moshe", address: "9 ahad haam, Tel Aviv")
 puts "created Moshe"
-User.create!(email: 'hg@gmail.com', password: 123456, first_name: "Hugo", address: "8 ahad ahaam")
+User.create!(email: 'hg@gmail.com', password: 123456, first_name: "Hugo", address: "8 ahad haam, Tel Aviv")
 puts "created Hugo"
-User.create!(email: 'sa@gmail.com', password: 123456, first_name: "Shane", address: "44 haskishon, Tel Aviv")
+User.create!(email: 'sa@gmail.com', password: 123456, first_name: "Shane", address: "44 hakishon, Tel Aviv")
 puts "created Shane"
 
 puts "creating book seeds"
