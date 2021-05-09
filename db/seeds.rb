@@ -29,13 +29,14 @@ puts "creating book seeds"
 40.times do
   puts "parsing API"
   fake_book = Faker::Book.title
+  puts fake_book
   if Book.all.any? { |book| book.title == fake_book }
-    break
+    next
   else
     file = URI.open("https://www.googleapis.com/books/v1/volumes?q=#{fake_book}").read
     book_response = JSON.parse(file)
     book = book_response['items'].first['volumeInfo']
-    title = Faker::Book.title
+    title = fake_book
     puts "adding #{title} to books"
     author = book['authors']
     if author
