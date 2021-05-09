@@ -32,6 +32,7 @@ gem 'font-awesome-sass', '~> 5.6.1'
 gem 'simple_form'
 gem 'devise'
 gem 'cloudinary'
+gem 'turbolinks_render'
 
 group :development, :test do gem 'pry-byebug'
   gem 'pry-rails'
