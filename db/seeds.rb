@@ -15,13 +15,13 @@ UserReview.destroy_all
 
 puts "creating users"
 
-User.create!(email: 'dg@gmail.com', password: 123456, first_name: "Daniel")
+User.create!(email: 'dg@gmail.com', password: 123456, first_name: "Daniel", address: "13 shimshon, Jerusalem")
 puts "created Daniel"
-User.create!(email: 'mm@gmail.com', password: 123456, first_name: "Moshe")
+User.create!(email: 'mm@gmail.com', password: 123456, first_name: "Moshe", address: "8 ahad ahaam")
 puts "created Moshe"
-User.create!(email: 'hg@gmail.com', password: 123456, first_name: "Hugo")
+User.create!(email: 'hg@gmail.com', password: 123456, first_name: "Hugo", address: "8 ahad ahaam")
 puts "created Hugo"
-User.create!(email: 'sa@gmail.com', password: 123456, first_name: "Shane")
+User.create!(email: 'sa@gmail.com', password: 123456, first_name: "Shane", address: "44 haskishon, Tel Aviv")
 puts "created Shane"
 
 puts "creating book seeds"
@@ -30,7 +30,7 @@ puts "creating book seeds"
   puts "parsing API"
   fake_book = Faker::Book.title
   puts fake_book
-  if Book.all.any? { |book| book.title == fake_book }
+  if Book.all.any? { |book| book.title == fake_book } && !(file = URI.open("https://www.googleapis.com/books/v1/volumes?q=#{fake_book}").read)
     next
   else
     file = URI.open("https://www.googleapis.com/books/v1/volumes?q=#{fake_book}").read
