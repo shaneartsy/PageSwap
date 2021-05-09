@@ -1,5 +1,5 @@
 <div>
-  <h2>User: <%= @user.first_name %></h2>
+  <h2><%= @user.first_name %>'s Books</h2>
   <div class="product-cards">
     <% @items.each do |item| %>
       <% if item.available %>

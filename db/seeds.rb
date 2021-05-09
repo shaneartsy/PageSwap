@@ -26,7 +26,7 @@ puts "created Shane"
 
 puts "creating book seeds"
 
-40.times do
+1.times do
   puts "parsing API"
   fake_book = Faker::Book.title
   puts fake_book
@@ -65,7 +65,7 @@ puts "finished book seeds"
 
 puts "creating book reviews"
 
-50.times do
+1.times do
   BookReview.create!(user: User.all.sample, book: Book.all.sample, content: Faker::Lorem.paragraph(sentence_count: rand(2..6)), rating: rand(1..5))
 end
 
@@ -75,7 +75,7 @@ puts "creating catalog items"
 
 quality_arr = ["mint condition", "pretty good", "ok", "slightly ripped", "not great"]
 
-50.times do
+1.times do
   CatalogItem.create!(quality: quality_arr.sample, user_summary: Faker::Lorem.paragraph(sentence_count: rand(2..4)), available: rand(1..2) == 1 ? true : false, user: User.all.sample, book: Book.all.sample)
 end
 
@@ -83,7 +83,7 @@ puts "finished creating catalog items"
 
 puts "creating chatrooms"
 
-5.times do
+8.times do
   user1 = User.all.sample
   user_arr = User.all.filter { |user| user != user1 }
   Chatroom.create!(user1: user1, user2: user_arr.sample)
@@ -93,7 +93,7 @@ puts "finished creating chatrooms"
 
 puts "creating comments"
 
-40.times do
+1.times do
   comment = Comment.new(user: User.all.sample, book: Book.all.sample, content: Faker::Lorem.paragraph(sentence_count: rand(2..4)))
   comment.parent = rand(1..4) == 1 ? nil : Comment.all.sample
   comment.save
@@ -103,15 +103,17 @@ puts "finished creating comments"
 
 puts "creating messages"
 
-40.times do
-  Message.create!(user: User.all.sample, chatroom: Chatroom.all.sample, content: Faker::Lorem.paragraph(sentence_count: rand(1..4)))
+5.times do
+  Chatroom.all.each do |room|
+    Message.create!(user: rand(1..2) == 1 ? room.user1 : room.user2, chatroom: room, content: Faker::Lorem.paragraph(sentence_count: rand(1..4)))
+  end
 end
 
 puts "finished creating messages"
 
 puts "Creating requests"
 
-50.times do
+1.times do
   status_arr = ["pending", "accepted", "declined"]
   ci1 = CatalogItem.all.sample
   ci_arr = CatalogItem.all.filter { |item| item != ci1 }
@@ -126,7 +128,7 @@ puts "finished creating requests"
 
 puts "creating user reviews"
 
-40.times do
+1.times do
   user1 = User.all.sample
   if user1.first_name == "Daniel"
     puts "rating that god Daniel"
