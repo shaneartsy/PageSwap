@@ -1,0 +1,10 @@
+<div>
+  <% i = 1 %>
+  <h2>User: <%= @user.first_name %></h2>
+  <% @items.each do |item| %>
+    <div>
+      <p>Book <%= i %>: <%= item.book.title %></p>
+    </div>
+    <% i += 1 %>
+  <% end %>
+</div>
