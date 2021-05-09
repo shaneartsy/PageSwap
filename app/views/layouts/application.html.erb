@@ -13,10 +13,14 @@
     <%= stylesheet_pack_tag 'application' %>
   </head>
 
-  <body class="width-300">
+  <body>
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
+    <div class="subcontainer-content">
+      <div class="content-wrap">
+      <%= yield %>
+      </div>
+    </div>
     <%= render 'shared/footer' %>
-    <%= yield %>
   </body>
 </html>
