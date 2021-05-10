@@ -101,7 +101,7 @@ puts "creating chatrooms"
   user2 = user_arr.sample
   chatrooms = Chatroom.all.filter { |room| (room.user1 == user1 && room.user2 == room.user2) || (room.user2 == user1 && room.user1 == room.user2) }
   if chatrooms.length == 0
-    Chatroom.create!(user1: user1, user2: user_arr.sample)
+    Chatroom.create!(user1: user1, user2: user2)
   end
   chatrooms = []
 end
