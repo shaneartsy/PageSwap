@@ -21,6 +21,8 @@ ratings_sum = ratings.sum
 ratings_count = ratings.count
 ratings_devied = ratings_sum / ratings.count
 
+  include PgSearch::Model
+  multisearchable against: [:first_name, :email]
 end
   end
 

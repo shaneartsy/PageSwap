@@ -1,5 +1,5 @@
 .product-card {
-  width: 100%;
+  width: 300px;
   height: 100px;
   background-color: white;
   box-shadow: 1px 1px 2px rgba(20,20,20,.3);
@@ -18,6 +18,40 @@
 .product-p p {
   overflow: hidden;
   white-space: nowrap;
+}
+
+.product-p-user {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.user-info {
+  width: 100%;
+}
+
+.product-card-user {
+  height: 100px;
+  width: 300px;
+  background-color: white;
+  box-shadow: 1px 1px 2px rgba(20,20,20,.3);
+  border-radius: 8px;
+  margin: 10px;
+  flex-direction: column;
+}
+
+.product-details-user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.product-p {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .product-card p {
