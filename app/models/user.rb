@@ -13,5 +13,5 @@ class User < ApplicationRecord
   has_one_attached :photo
 
   include PgSearch::Model
-  multisearchable against: [:first_name, :email]
+  multisearchable against: %i[first_name email]
 end
