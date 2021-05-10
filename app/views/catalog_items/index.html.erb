@@ -1,16 +1,17 @@
 <div>
-  <h2>User: <%= @user.first_name %></h2>
+  <h2><%= @user.first_name %>'s Books</h2>
   <div class="product-cards">
     <div class="create mt-3">
       <%= link_to "Add new book",  new_book_path, class: "btn-primary" %>
     </div>
     <% @items.each do |item| %>
       <% if item.available %>
-        <%= link_to book_path(item.book) do %>
+        <%= link_to book_path(item.book, ci_id: item.id) do %>
           <div class="product-card">
             <div class="product-details">
               <div class="product-details1">
                 <div class="product-p">
+                  <div class="btn btn-primary">
                   <p>Title: <%= item.book.title %></p>
                   <p>Author: <%= item.book.author %></p>
                   <p>Category: <%= item.book.category %></p>

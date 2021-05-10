@@ -1,0 +1,15 @@
+<% @chatrooms.each do |room| %>
+  <% if room.user1 == current_user && room.user2 != current_user %>
+    <div>
+      <%= link_to chatroom_path(room.user2) do %>
+        <p><%= room.user2.first_name %></p>
+      <% end %>
+    </div>
+  <% elsif room.user2 == current_user && room.user1 != current_user %>
+    <div>
+      <%= link_to chatroom_path(room.user1) do %>
+        <p><%= room.user1.first_name %></p>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
