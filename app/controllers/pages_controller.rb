@@ -57,4 +57,9 @@ class PagesController < ApplicationController
 
   def faq
   end
+
+  def new
+    @user_reviews = UserReview.new
+
+  end
 end
