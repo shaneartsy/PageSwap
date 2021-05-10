@@ -39,6 +39,8 @@
       <%= f.input :content, label: false, class: "review_input", placeholder: 'Write a review' %>
       <%= f.input :rating, collection: 1..5, selected: 5, class: "rating-input" %>
       <%= f.button :submit, "Post" %>
+
+
     <% end %>
   <% else %>
     <h6>Must be logged in to create a review</h6>
@@ -50,6 +52,8 @@
       <% @book.book_reviews.reverse.each do |review| %>
         <div class="book-review" id="review-<%= review.id %>">
           <p><%= review.user.first_name %> -- <%= review.content %></p>
+
+          </script>
         </div>
       <% end %>
 

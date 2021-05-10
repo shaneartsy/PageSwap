@@ -15,5 +15,8 @@ Rails.application.routes.draw do
   resources :catalog_items do
     resources :requests, only: [:create]
   end
+  resources :books do
+      post 'create_and_rate'
+    end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

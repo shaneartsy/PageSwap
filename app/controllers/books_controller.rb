@@ -6,5 +6,6 @@ class BooksController < ApplicationController
     @users = User.all.filter { |user| user != current_user}
     @book = Book.find(params[:id])
     @catalog_item = CatalogItem.find(params[:ci_id])
+
   end
 end
