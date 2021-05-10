@@ -12,5 +12,5 @@ class User < ApplicationRecord
   has_many :books, through: :catalog_items
 
   include PgSearch::Model
-  multisearchable against: [:first_name, :email]
+  multisearchable against: %i[first_name email]
 end
