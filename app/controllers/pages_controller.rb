@@ -5,6 +5,11 @@ class PagesController < ApplicationController
     @users = User.all
   end
 
+  def user_page
+    @user = User.find(params[:user_id])
+    @items = @user.catalog_items
+  end
+
   def about_us
   end
 
