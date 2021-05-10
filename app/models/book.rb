@@ -16,6 +16,10 @@ ratings_devied = ratings_sum / ratings.count
 
 
 
-end
+
+  validates :title, presence: true
+  validates :author, presence: true
+  validates :summary, presence: true
+ end
   end
 
