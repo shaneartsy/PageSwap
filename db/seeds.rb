@@ -33,8 +33,9 @@ puts "creating book seeds"
   if Book.all.any? { |book| book.title == fake_book } && !(file = URI.open("https://www.googleapis.com/books/v1/volumes?q=#{fake_book}").read)
     next
   else
-    file = URI.open("https://www.googleapis.com/books/v1/volumes?q=#{fake_book}").read
+    file = URI.open("https://www.googleapis.com/books/v1/volumes?q=harry potter").read
     book_response = JSON.parse(file)
+    p book_response
     book = book_response['items'].first['volumeInfo']
     title = fake_book
     puts "adding #{title} to books"
@@ -83,7 +84,7 @@ puts "finished creating catalog items"
 
 puts "creating chatrooms"
 
-8.times do
+6.times do
   user1 = User.all.sample
   user_arr = User.all.filter { |user| user != user1 }
   Chatroom.create!(user1: user1, user2: user_arr.sample)
@@ -103,7 +104,7 @@ puts "finished creating comments"
 
 puts "creating messages"
 
-50.times do
+60.times do
   Chatroom.all.each do |room|
     Message.create!(user: rand(1..2) == 1 ? room.user1 : room.user2, chatroom: room, content: Faker::Lorem.paragraph(sentence_count: rand(1..4)))
   end
@@ -113,7 +114,7 @@ puts "finished creating messages"
 
 puts "Creating requests"
 
-30.times do
+35.times do
   status_arr = ["pending", "accepted", "declined"]
   ci1 = CatalogItem.all.sample
   ci_arr = CatalogItem.all.filter { |item| item != ci1 }
@@ -128,7 +129,7 @@ puts "finished creating requests"
 
 puts "creating user reviews"
 
-40.times do
+50.times do
   user1 = User.all.sample
   if user1.first_name == "Daniel"
     puts "rating that god Daniel"

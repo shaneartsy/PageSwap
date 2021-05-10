@@ -10,4 +10,7 @@ class User < ApplicationRecord
   has_many :requests
   has_many :comments
   has_many :books, through: :catalog_items
+
+  include PgSearch::Model
+  multisearchable against: [:first_name, :email]
 end
