@@ -1,3 +1,4 @@
+
 <div>
   <h2><%= @user.first_name %>'s Books</h2>
   <div class="product-cards">
@@ -12,9 +13,12 @@
                     <p>Title: <%= item.book.title %></p>
                     <p>Author: <%= item.book.author %></p>
                     <p>Category: <%= item.book.category %></p>
+                    <p>Rating: <%= item.book.rating %></p>
                   </div>
                   <div>
                     <p class="bold">Condition: <%= item.quality %></p>
+                    <button type="button" class="btn btn-primary"><%= link_to "Swap", catalog_item_requests_path(item), method: :post, class: "btn-primary" %></button>
+
                   </div>
                 </div>
               </div>
@@ -32,4 +36,3 @@
     <% end %>
   </div>
 </div>
-

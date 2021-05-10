@@ -5,10 +5,21 @@ class Book < ApplicationRecord
   has_one_attached :photo
   # has_many :request, through: :catalog_item
 
+include PgSearch::Model
+multisearchable against: [:title, :author, :summary]
+
+def average_rating
+ratings = received_reviews.map { |review| review.rating}
+ratings_sum = ratings.sum
+ratings_count = ratings.count
+ratings_devied = ratings_sum / ratings.count
+
+
+
+
   validates :title, presence: true
   validates :author, presence: true
   validates :summary, presence: true
+ end
+  end
 
-  include PgSearch::Model
-  multisearchable against: %i[title author summary]
-end

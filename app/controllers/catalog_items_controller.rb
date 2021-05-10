@@ -5,3 +5,4 @@ class CatalogItemsController < ApplicationController
     @items = @user.catalog_items
   end
 end
+
