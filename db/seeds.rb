@@ -15,13 +15,25 @@ UserReview.destroy_all
 
 puts "creating users"
 
-User.create!(email: 'dg@gmail.com', password: 123456, first_name: "Daniel", address: "13 shimshon, Jerusalem")
+user = User.new(email: 'dg@gmail.com', password: 123456, first_name: "Daniel", address: "13 shimshon, Jerusalem")
+file_image = URI.open(Faker::Avatar.image)
+user.photo.attach(io: file_image, filename: "nes.png", content_type: 'image/png')
+user.save
 puts "created Daniel"
-User.create!(email: 'mm@gmail.com', password: 123456, first_name: "Moshe", address: "9 ahad haam, Tel Aviv")
+user = User.new(email: 'mm@gmail.com', password: 123456, first_name: "Moshe", address: "9 ahad haam, Tel Aviv")
+file_image = URI.open(Faker::Avatar.image)
+user.photo.attach(io: file_image, filename: "nes.png", content_type: 'image/png')
+user.save
 puts "created Moshe"
-User.create!(email: 'hg@gmail.com', password: 123456, first_name: "Hugo", address: "8 ahad haam, Tel Aviv")
+user = User.new(email: 'hg@gmail.com', password: 123456, first_name: "Hugo", address: "8 ahad haam, Tel Aviv")
+file_image = URI.open(Faker::Avatar.image)
+user.photo.attach(io: file_image, filename: "nes.png", content_type: 'image/png')
+user.save
 puts "created Hugo"
-User.create!(email: 'sa@gmail.com', password: 123456, first_name: "Shane", address: "44 hakishon, Tel Aviv")
+user = User.new(email: 'sa@gmail.com', password: 123456, first_name: "Shane", address: "44 hakishon, Tel Aviv")
+file_image = URI.open(Faker::Avatar.image)
+user.photo.attach(io: file_image, filename: "nes.png", content_type: 'image/png')
+user.save
 puts "created Shane"
 
 puts "creating book seeds"

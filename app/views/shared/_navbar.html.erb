@@ -1,7 +1,11 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon z">
   <div>
     <%= link_to root_path do %>
-      <%= image_tag "https://images.unsplash.com/photo-1566760728319-20b86d2b419e?ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDF8SnBnNktpZGwtSGt8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60", height: '50px', width: '50px', class: "avatar" %>
+      <% if user_signed_in? %>
+        <%= cl_image_tag current_user.photo.key, height: '50px', width: '50px', class: "avatar" %>
+      <% else %>
+        <%= image_tag "https://images.unsplash.com/photo-1566760728319-20b86d2b419e?ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDF8SnBnNktpZGwtSGt8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60", height: '50px', width: '50px', class: "avatar" %>
+      <% end %>
     <% end %>
 </div>
 <div>
