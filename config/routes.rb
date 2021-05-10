@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :chatrooms, only: [:show, :index] do
     resources :messages, only: :create
   end
-  resources :books, only: [:show] do
+  resources :books, only: %i[show new create] do
     resources :book_reviews, only: [:create]
   end
   get 'pages/about_us', to: 'pages#about_us'
