@@ -1,6 +1,6 @@
+
 <div>
   <h2><%= @user.first_name %>'s Books</h2>
-  <p>rating..<%= @user.average_rating %></p>
   <div class="product-cards">
     <% @items.each do |item| %>
       <% if item.available %>
@@ -9,21 +9,16 @@
             <div class="product-details">
               <div class="product-details1">
                 <div class="product-p">
-                  <div class="btn btn-primary">
-                  <p>Title: <%= item.book.title %></p>
-                  <p>Author: <%= item.book.author %></p>
-                  <p>Category: <%= item.book.category %></p>
-                  <p>Rating: <%= item.book.rating %></p>
-                <div>
-                  <p class="bold">Condition: <%= item.quality %></p>
-
                   <div class="btn btn-primary width100">
                     <p>Title: <%= item.book.title %></p>
                     <p>Author: <%= item.book.author %></p>
                     <p>Category: <%= item.book.category %></p>
+                    <p>Rating: <%= item.book.rating %></p>
                   </div>
                   <div>
                     <p class="bold">Condition: <%= item.quality %></p>
+                    <button type="button" class="btn btn-primary"><%= link_to "Swap", catalog_item_requests_path(item), method: :post, class: "btn-primary" %></button>
+
                   </div>
                 </div>
               </div>
@@ -41,4 +36,3 @@
     <% end %>
   </div>
 </div>
-
