@@ -12,7 +12,7 @@
 
 <% if @results != nil %>
   <% @results.each do |result| %>
-    <% if result.author %>
+    <% if result.class.name == "Book" %>
       <%= link_to book_path(result, ci_id: result.id) do %>
         <div class="product-card">
           <div class="product-details">
@@ -34,9 +34,25 @@
         </div>
       <% end %>
     <% else %>
+      <%= link_to user_catalog_items_path(result) do %>
+          <div class="product-card-user">
+            <div class="product-details-user">
+              <div class="product-details1 width100">
+                <div class="product-p-user">
+                  <div class="btn btn-primary user-info">
+                    <p>First Name: <%= result.first_name %></p>
+                    <p>Address: <%= result.address %></p>
+                  </div>
+                </div>
+              </div>
+              <div class="product-details2">
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
     <% end %>
   <% end %>
-<% end %>
 
 <ul>
   <% @users.each do |user| %>
