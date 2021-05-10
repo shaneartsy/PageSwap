@@ -33,11 +33,10 @@ puts "creating book seeds"
   if Book.all.any? { |book| book.title == fake_book } && !(file = URI.open("https://www.googleapis.com/books/v1/volumes?q=#{fake_book}").read)
     next
   else
-    file = URI.open("https://www.googleapis.com/books/v1/volumes?q=harry potter").read
+    file = URI.open("https://www.googleapis.com/books/v1/volumes?q=#{fake_book}").read
     book_response = JSON.parse(file)
-    p book_response
     book = book_response['items'].first['volumeInfo']
-    title = fake_book
+    title = book['title']
     puts "adding #{title} to books"
     author = book['authors']
     if author
