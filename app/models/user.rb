@@ -10,4 +10,17 @@ class User < ApplicationRecord
   has_many :requests
   has_many :comments
   has_many :books, through: :catalog_items
+
+  def received_reviews
+    user_reviews = UserReview.where(receiver_id: self.id)
+  end
+
+def average_rating
+ratings = received_reviews.map { |review| review.rating}
+ratings_sum = ratings.sum
+ratings_count = ratings.count
+ratings_devied = ratings_sum / ratings.count
+
 end
+  end
+

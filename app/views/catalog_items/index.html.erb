@@ -1,5 +1,6 @@
 <div>
   <h2><%= @user.first_name %>'s Books</h2>
+  <p>rating..<%= @user.average_rating %></p>
   <div class="product-cards">
     <% @items.each do |item| %>
       <% if item.available %>
@@ -12,7 +13,7 @@
                   <p>Title: <%= item.book.title %></p>
                   <p>Author: <%= item.book.author %></p>
                   <p>Category: <%= item.book.category %></p>
-                </div>
+                  <p>Rating: <%= item.book.rating %></p>
                 <div>
                   <p class="bold">Condition: <%= item.quality %></p>
                 </div>
