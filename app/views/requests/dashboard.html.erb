@@ -29,10 +29,10 @@
               <p class="bold">Condition: $<%= request.books.condition %></p>
             </div>
           </div>
-          <!-- <div class="product-details2">
+          <div class="product-details2">
             <% if request.books.photo.attached? %>
             <%= cl_image_tag(request.books.photo.key, crop: :fill, height: 100, class: "product-img") %>
-            <% end %> -->
+            <% end %>
           </div>
         </div>
         <a class="dropdown-item" href="#">Accepted Swaps</a>
@@ -62,7 +62,9 @@
       <% if @requests.any? { |request| request.status == "declined" && request.user == current_user } %>
       <% end %>
       <% requests.each do |request| %>
+      <% end %>
       <% if request.status == "declined" && request.user == current_user %>
+      <% end %>
       <div class="product-card" data-toggle="modal" data-target="#modal-<%= request.id %>">
         <div class="product-details">
           <div class="product-details1">
