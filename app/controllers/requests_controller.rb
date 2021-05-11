@@ -21,4 +21,28 @@ class RequestsController < ApplicationController
   def dashboard
     @requests = Request.all
   end
+
+  def destroy
+    request = Request.find(params[:id])
+    request.delete
+    redirect_to dashboard_path
+  end
+
+  def update
+    request = Request.find(params[:id])
+    request.update(request_params)
+    item = CatalogItem.find(params[:request][:seller_item])
+    request.seller_item = item
+    request.save
+    redirect_to dashboard_path
+  end
+
+  private
+
+  def request_params
+    params.require(:request).permit(:status)
+  end
 end
+
+
+
