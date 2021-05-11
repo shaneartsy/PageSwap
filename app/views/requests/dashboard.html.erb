@@ -20,6 +20,7 @@
             <div class="product-p">
               <p>Title: <%= request.buyer_item.book.title %></p>
               <p>Author: <%= request.buyer_item.book.author %></p>
+              <p><%= link_to "Delete", request_path(request), method: :delete %></p>
             </div>
             <div>
               <p class="bold">Condition: <%= request.buyer_item.quality %></p>
@@ -53,7 +54,7 @@
           </div>
           <div class="product-details2">
             <% if request.buyer_item.book.photo.attached? %>
-            <%= cl_image_tag(request.buyer_item.book.photo.key, crop: :fill, height: 100, class: "product-img") %>
+              <%= cl_image_tag(request.buyer_item.book.photo.key, crop: :fill, height: 100, class: "product-img") %>
             <% end %>
           </div>
         </div>
