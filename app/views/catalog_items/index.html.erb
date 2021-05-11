@@ -1,8 +1,12 @@
 
 <div>
-  <p> <%= @user.average_rating %>rating</p>
-  <h2><%= @user.first_name %>'s Books</h2>
-   <div class="product-cards">
+
+  <div class="catalog_title">
+    <%= cl_image_tag @user.photo.key, height: '50px', width: '50px', class: "avatar" %>
+    <h2><%= @user.first_name %>'s Books</h2>
+    <div class="width50"><%= link_to "Message", chatroom_path(@chatroom) %></div>
+  </div>
+  <div class="product-cards">
     <% @items.each do |item| %>
       <% if item.available %>
         <%= link_to book_path(item.book, ci_id: item.id) do %>

@@ -1,4 +1,5 @@
 class RequestsController < ApplicationController
+
   def create
   @request = Request.new
      @catalog_item = CatalogItem.find(params[:catalog_item_id])
@@ -7,4 +8,9 @@ class RequestsController < ApplicationController
      @request.save
      redirect_to user_catalog_items_path(@catalog_item.user)
   end
+
+  def dashboard
+    @requests = Request.all
+  end
+
 end

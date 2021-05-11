@@ -16,7 +16,7 @@ class PagesController < ApplicationController
       elsif (URI.open("https://www.googleapis.com/books/v1/volumes?q=#{params[:query]}").read)
         file = URI.open("https://www.googleapis.com/books/v1/volumes?q=#{params[:query]}").read
         book_response = JSON.parse(file)
-        books = book_response['items'].reverse[1..4]
+        books = book_response['items'][1..4]
         books.each do |book|
           book1 = book['volumeInfo']
           title = book1['title']

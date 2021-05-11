@@ -14,7 +14,7 @@
 <% if @results != nil %>
   <% @results.each do |result| %>
     <% if result.class.name == "Book" %>
-      <%= link_to book_path(result, ci_id: result.id) do %>
+      <%= link_to book_path(result) do %>
         <div class="product-card">
           <div class="product-details">
             <div class="product-details1">
