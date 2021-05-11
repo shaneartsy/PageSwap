@@ -13,7 +13,7 @@
       <!-- click eventlistener to change button color? (so user can see they pressed it)  -->
 
       <% if @requests.any? { |request| request.status == "pending" && request.buyer_item.user == current_user } %>
-        <h2>My Pending Requests</h2>
+        <h2>Pending Swaps</h2>
         <% @requests.each do |request| %>
           <% if request.status == "pending" && request.buyer_item.user == current_user %>
             <div class="product-card" data-toggle="modal" data-target="#modal-<%= request.id %>">
@@ -24,7 +24,7 @@
                     <p>Author: <%= request.buyer_item.book.author %></p>
                   </div>
                   <div>
-                    <p class="bold">Condition: $<%= request.buyer_item.quality %></p>
+                    <p class="bold">Condition: <%= request.buyer_item.quality %></p>
                   </div>
                 </div>
                 <div class="product-details2">
@@ -53,7 +53,7 @@
                       <p>Author: <%= request.buyer_item.book.author %></p>
                     </div>
                     <div>
-                      <p class="bold">Condition: $<%= request.buyer_item.quality %></p>
+                      <p class="bold">Condition: <%= request.buyer_item.quality %></p>
                     </div>
                   </div>
                 </div>
@@ -78,7 +78,7 @@
                     <p>Author: <%= request.buyer_item.book.author %></p>
                   </div>
                   <div>
-                    <p class="bold">Condition: $<%= request.buyer_item.quality %></p>
+                    <p class="bold">Condition: <%= request.buyer_item.quality %></p>
                   </div>
                 </div>
               </div>
