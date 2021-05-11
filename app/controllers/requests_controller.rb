@@ -11,6 +11,10 @@ class RequestsController < ApplicationController
 
   def dashboard
     @requests = Request.all
+    @items = []
+    CatalogItem.where(user: current_user).each do |item|
+      @items << [item.book.title, item.id]
+    end
   end
 
   def destroy
@@ -19,4 +23,18 @@ class RequestsController < ApplicationController
     redirect_to dashboard_path
   end
 
+  def update
+    request = Request.find(params[:id])
+    request.update(request_params)
+    item = CatalogItem.find(params[:request][:seller_item])
+    request.seller_item = item
+    request.save
+    redirect_to dashboard_path
+  end
+
+  private
+
+  def request_params
+    params.require(:request).permit(:status)
+  end
 end
