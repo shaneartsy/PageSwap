@@ -51,6 +51,11 @@
               <p class="bold">Condition: <%= request.buyer_item.quality %></p>
             </div>
           </div>
+          <div class="product-details2">
+            <% if request.buyer_item.book.photo.attached? %>
+            <%= cl_image_tag(request.buyer_item.book.photo.key, crop: :fill, height: 100, class: "product-img") %>
+            <% end %>
+          </div>
         </div>
       </div>
       <% end %>
@@ -72,6 +77,11 @@
             <div>
               <p class="bold">Condition: <%= request.buyer_item.quality %></p>
             </div>
+          </div>
+          <div class="product-details2">
+            <% if request.buyer_item.book.photo.attached? %>
+            <%= cl_image_tag(request.buyer_item.book.photo.key, crop: :fill, height: 100, class: "product-img") %>
+            <% end %>
           </div>
         </div>
       </div>
