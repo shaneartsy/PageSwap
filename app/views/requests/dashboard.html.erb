@@ -1,7 +1,6 @@
 <div class="create mt-3">
-  <%= link_to "Add to my bookshelf", new_book_path, class: "btn-success p-2" %>
+  <%= link_to "Add to my bookshelf", new_catalog_item_path, class: "btn-success p-2" %>
 </div>
-
 <ul class="nav nav-pills mt-3 justify-content-center">
   <li class="nav-item">
     <a class="nav-link active" href="#">My Books</a>
@@ -11,83 +10,87 @@
     <div class="dropdown-menu">
       <a class="dropdown-item" href="#">Pending Swaps</a>
       <!-- click eventlistener to change button color? (so user can see they pressed it)  -->
-
       <% if @requests.any? { |request| request.status == "pending" && request.buyer_item.user == current_user } %>
-        <h2>Pending Swaps</h2>
-        <% @requests.each do |request| %>
-          <% if request.status == "pending" && request.buyer_item.user == current_user %>
-            <div class="product-card" data-toggle="modal" data-target="#modal-<%= request.id %>">
-              <div class="product-details">
-                <div class="product-details1">
-                  <div class="product-p">
-                    <p>Title: <%= request.buyer_item.book.title %></p>
-                    <p>Author: <%= request.buyer_item.book.author %></p>
-                  </div>
-                  <div>
-                    <p class="bold">Condition: <%= request.buyer_item.quality %></p>
-                  </div>
-                </div>
-                <div class="product-details2">
-                  <% if request.buyer_item.book.photo.attached? %>
-                  <%= cl_image_tag(request.buyer_item.book.photo.key, crop: :fill, height: 100, class: "product-img") %>
-                  <% end %>
-                </div>
-              </div>
+      <h2>Pending Swaps</h2>
+      <% @requests.each do |request| %>
+      <% if request.status == "pending" && request.buyer_item.user == current_user %>
+      <div class="product-card" data-toggle="modal" data-target="#modal-<%= request.id %>">
+        <div class="product-details">
+          <div class="product-details1">
+            <div class="product-p">
+              <p>Title: <%= request.buyer_item.book.title %></p>
+              <p>Author: <%= request.buyer_item.book.author %></p>
             </div>
-          <% end %>
-        <% end %>
-      <% end %>
-
-        <% if @requests.any? { |request| request.status == "accepted" && request.buyer_item.user == current_user } %>
-          <a class="dropdown-item" href="#">Accepted Swaps</a>
-          <h2>Accepted Swaps</h2>
-
-
-          <% @requests.each do |request| %>
-            <% if request.status == "accepted" && request.buyer_item.user == current_user %>
-              <div class="product-card" data-toggle="modal" data-target="#modal-<%= request.id %>">
-                <div class="product-details">
-                  <div class="product-details1">
-                    <div class="product-p">
-                      <p>Title: <%= request.buyer_item.book.title %></p>
-                      <p>Author: <%= request.buyer_item.book.author %></p>
-                    </div>
-                    <div>
-                      <p class="bold">Condition: <%= request.buyer_item.quality %></p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div>
+              <p class="bold">Condition: <%= request.buyer_item.quality %></p>
+            </div>
+          </div>
+          <div class="product-details2">
+            <% if request.buyer_item.book.photo.attached? %>
+            <%= cl_image_tag(request.buyer_item.book.photo.key, crop: :fill, height: 100, class: "product-img") %>
             <% end %>
-          <% end %>
-        <% end %>
-
-      <% if @requests.any? { |request| request.status == "declined" && request.buyer_item.user == current_user } %>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="#">Rejected Swaps</a>
-
-        <% @requests.each do |request| %>
-
-          <% if request.status == "declined" && request.buyer_item.user == current_user %>
-
-            <div class="product-card" data-toggle="modal" data-target="#modal-<%= request.id %>">
-              <div class="product-details">
-                <div class="product-details1">
-                  <div class="product-p">
-                    <p>Title: <%= request.buyer_item.book.title %></p>
-                    <p>Author: <%= request.buyer_item.book.author %></p>
-                  </div>
-                  <div>
-                    <p class="bold">Condition: <%= request.buyer_item.quality %></p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          <% end %>
-        <% end %>
+          </div>
+        </div>
+      </div>
       <% end %>
-
-
+      <% end %>
+      <% end %>
+      <% if @requests.any? { |request| request.status == "accepted" && request.buyer_item.user == current_user } %>
+      <a class="dropdown-item" href="#">Accepted Swaps</a>
+      <h2>Accepted Swaps</h2>
+      <% @requests.each do |request| %>
+      <% if request.status == "accepted" && request.buyer_item.user == current_user %>
+      <div class="product-card" data-toggle="modal" data-target="#modal-<%= request.id %>">
+        <div class="product-details">
+          <div class="product-details1">
+            <div class="product-p">
+              <p>Title: <%= request.buyer_item.book.title %></p>
+              <p>Author: <%= request.buyer_item.book.author %></p>
+            </div>
+            <div>
+              <p class="bold">Condition: <%= request.buyer_item.quality %></p>
+            </div>
+          </div>
+          <div class="product-details2">
+            <% if request.buyer_item.book.photo.attached? %>
+            <%= cl_image_tag(request.buyer_item.book.photo.key, crop: :fill, height: 100, class: "product-img") %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+      <% end %>
+      <% end %>
+      <% if @requests.any? { |request| request.status == "declined" && request.buyer_item.user == current_user } %>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="#">Rejected Swaps</a>
+      <h2>Rejected Swaps</h2>
+      <% @requests.each do |request| %>
+      <% if request.status == "declined" && request.buyer_item.user == current_user %>
+      <div class="product-card" data-toggle="modal" data-target="#modal-<%= request.id %>">
+        <div class="product-details">
+          <div class="product-details1">
+            <div class="product-p">
+              <p>Title: <%= request.buyer_item.book.title %></p>
+              <p>Author: <%= request.buyer_item.book.author %></p>
+            </div>
+            <div>
+              <p class="bold">Condition: <%= request.buyer_item.quality %></p>
+            </div>
+          </div>
+          <div class="product-details2">
+            <% if request.buyer_item.book.photo.attached? %>
+            <%= cl_image_tag(request.buyer_item.book.photo.key, crop: :fill, height: 100, class: "product-img") %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+      <% end %>
+      <% end %>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="#">Past Swaps</a>
+       <h2>My Swap History</h2>
     </li>
     <li class="nav-item btn-light">
       <a class="nav-link" href="/">Back to browse</a>
