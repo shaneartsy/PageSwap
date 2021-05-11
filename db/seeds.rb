@@ -42,7 +42,7 @@ puts "creating book seeds"
   puts "parsing API"
   fake_book = Faker::Book.title
   puts fake_book
-  if Book.all.any? { |book| book.title == fake_book } && !(file = URI.open("https://www.googleapis.com/books/v1/volumes?q=#{fake_book}").read)
+  if (Book.all.any? { |book| book.title == fake_book }) || (!(file = URI.open("https://www.googleapis.com/books/v1/volumes?q=#{fake_book}").read))
     next
   else
     file = URI.open("https://www.googleapis.com/books/v1/volumes?q=#{fake_book}").read
