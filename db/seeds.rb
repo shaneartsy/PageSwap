@@ -38,7 +38,7 @@ puts "created Shane"
 
 puts "creating book seeds"
 
-40.times do
+1.times do
   puts "parsing API"
   fake_book = Faker::Book.title
   puts fake_book

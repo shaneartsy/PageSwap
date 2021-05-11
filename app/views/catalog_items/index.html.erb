@@ -1,17 +1,21 @@
 
 <div>
-
   <div class="catalog_title">
     <%= cl_image_tag @user.photo.key, height: '50px', width: '50px', class: "avatar" %>
     <h2><%= @user.first_name %>'s Books</h2>
-    <div class="width50"><%= link_to "Message", chatroom_path(@chatroom) %></div>
+    <div class="width50">
+      <% if user_signed_in? %>
+        <%= link_to "Message", chatroom_path(@chatroom) %>
+      <% end %>
+    </div>
   </div>
   <div class="product-cards">
     <% @items.each do |item| %>
       <% if item.available %>
-        <%= link_to book_path(item.book, ci_id: item.id) do %>
           <div class="product-card">
+            <%= link_to book_path(item.book, ci_id: item.id) do %>
             <div class="product-details">
+
               <div class="product-details1">
                 <div class="product-p">
                   <div class="btn btn-primary width100">
@@ -20,13 +24,13 @@
                     <p>Category: <%= item.book.category %></p>
                     <p>Rating: <%= item.book.rating %></p>
                   </div>
+
                   <div>
                     <p class="bold">Condition: <%= item.quality %></p>
-                    <button type="button" class="btn btn-primary"><%= link_to "Swap", catalog_item_requests_path(item), method: :post, class: "btn-primary" %></button>
-
                   </div>
                 </div>
               </div>
+
               <div class="product-details2">
                 <% if item.book.photo.attached? %>
                   <%= cl_image_tag(item.book.photo.key, crop: :fill, height: 100, class: "product-img") %>
@@ -35,9 +39,44 @@
                 <% end %>
               </div>
             </div>
+
+            <% end %>
+          </div>
+
+          <% if user_signed_in? %>
+            <h3 class="btn btn-primary" data-toggle="modal" data-target="#modal-<%= item.id %>">Swap</h3>
+          <% end %>
+          <div class="modal fade" id="modal-<%= item.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Author</h5>
+                  <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Dropdown
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <button class="dropdown-item" type="button">My List</button>
+                    <button class="dropdown-item" type="button">Category</button>
+                    <button class="dropdown-item" type="button">Swap</button>
+                  </div>
+                </div>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  ...
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
           </div>
         <% end %>
       <% end %>
-    <% end %>
+    </div>
+  </div>
+
+
   </div>
 </div>
