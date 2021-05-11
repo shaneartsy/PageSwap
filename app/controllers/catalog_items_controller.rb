@@ -11,6 +11,11 @@ class CatalogItemsController < ApplicationController
     else
       @chatroom = @chatroom.first
     end
+    @my_items = []
+    CatalogItem.where(user: current_user).each do |item|
+      @my_items << [item.book.title, item.id]
+    end
+    @request = Request.new
   end
 
   def new

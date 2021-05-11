@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     resources :catalog_items, only: [:index]
   end
   resources :catalog_items, only: [:new, :create] do
-    resources :requests, only: [:create]
+    resources :requests, only: [:create, :new]
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

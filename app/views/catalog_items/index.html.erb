@@ -44,34 +44,32 @@
           </div>
 
           <% if user_signed_in? %>
-            <h3 class="btn btn-primary" data-toggle="modal" data-target="#modal-<%= item.id %>">Swap</h3>
-          <% end %>
-          <div class="modal fade" id="modal-<%= item.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+           <%= link_to "Swap", new_catalog_item_request_path(item) %><!--  <h3 class="btn btn-primary" data-toggle="modal" data-target="#modal-<%= item.id %>">Swap</h3>
+          <% end %> -->
+          <!-- <div class="modal fade" id="modal-<%= item.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Author</h5>
+                  <h5 class="modal-title" id="exampleModalLabel">Book Swap</h5>
                   <div class="dropdown">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown
-                  </button>
-                  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                    <button class="dropdown-item" type="button">My List</button>
-                    <button class="dropdown-item" type="button">Category</button>
-                    <button class="dropdown-item" type="button">Swap</button>
-                  </div>
+
                 </div>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                  ...
+
+
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+
+                </div>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-              </div>
-            </div>
-          </div>
+                </div> -->
+            <!--   </div>
+            </div> -->
+          <!-- </div> -->
         <% end %>
       <% end %>
     </div>
