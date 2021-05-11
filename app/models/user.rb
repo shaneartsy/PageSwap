@@ -12,6 +12,18 @@ class User < ApplicationRecord
   has_many :books, through: :catalog_items
   has_one_attached :photo
 
+
   include PgSearch::Model
   multisearchable against: [:first_name, :email]
-end
+
+  def received_reviews
+    user_reviews = UserReview.where(receiver_id: self.id)
+  end
+
+  def average_rating
+    ratings = received_reviews.map { |review| review.rating}
+    ratings_sum = ratings.sum
+    ratings_count = ratings.count
+    ratings_devied = ratings_sum / ratings.count
+    end
+  end
