@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :books, only: %i[show] do
     resources :book_reviews, only: [:create]
   end
-  resources :requests, only: [:destroy]
+  resources :requests, only: [:destroy, :update]
   get 'pages/about_us', to: 'pages#about_us'
   get 'pages/faq', to: 'pages#faq'
   get 'requests/dashboard', to: 'requests#dashboard', as: 'dashboard'
