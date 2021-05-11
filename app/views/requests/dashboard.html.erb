@@ -10,37 +10,72 @@
     <a class="nav-link dropdown-toggle btn-info" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Swaps</a>
     <div class="dropdown-menu">
       <a class="dropdown-item" href="#">Pending Swaps</a>
-      <!-- click eventlistener to change button color? (so user can see he pressed it)  -->
+      <!-- click eventlistener to change button color? (so user can see they pressed it)  -->
+      <h2>My Pending Requests</h2>
       <% if @requests.any? { |request| request.status == "pending" && request.user == current_user } %>
-      <h2 class="header-text mt-2 mb-2">My Pending Requests</h2>
       <% end %>
       <% @requests.user.each do |request| %>
+      <% end %>
       <% if request.status == "pending" && request.user == current_user %>
+      <% end %>
       <div class="product-card" data-toggle="modal" data-target="#modal-<%= request.id %>">
         <div class="product-details">
           <div class="product-details1">
             <div class="product-p">
               <p>Title: <%= request.books.title %></p>
               <p>Author: <%= request.books.author %></p>
-              <!-- <p>Pickup Date: <%= requests.pickup_time %></p> -->
-              <!-- <p>Location: <%= request.books.pickup_local %></p> -->
             </div>
             <div>
               <p class="bold">Condition: $<%= request.books.condition %></p>
             </div>
           </div>
-          <div class="product-details2">
+          <!-- <div class="product-details2">
             <% if request.books.photo.attached? %>
             <%= cl_image_tag(request.books.photo.key, crop: :fill, height: 100, class: "product-img") %>
-            <% end %>
+            <% end %> -->
           </div>
         </div>
-        <% end %>
         <a class="dropdown-item" href="#">Accepted Swaps</a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="#">Rejected Swaps</a>
+        <h2>Accepted Swaps</h2>
+        <% if requests.any? { |request| request.status == "accepted" && request.user == current_user } %>
+        <% end %>
+        <% requests.each do |request| %>
+        <% end %>
+        <% if request.status == "accepted" && request.user == current_user %>
+        <% end %>
+        <div class="product-card" data-toggle="modal" data-target="#modal-<%= request.id %>">
+          <div class="product-details">
+            <div class="product-details1">
+              <div class="product-p">
+                <p>Title: <%= request.books.title %></p>
+                <p>Author: <%= request.books.author %></p>
+              </div>
+              <div>
+                <p class="bold">Condition: $<%= request.books.condition %></p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="#">Rejected Swaps</a>
+      <% if @requests.any? { |request| request.status == "declined" && request.user == current_user } %>
+      <% end %>
+      <% requests.each do |request| %>
+      <% if request.status == "declined" && request.user == current_user %>
+      <div class="product-card" data-toggle="modal" data-target="#modal-<%= request.id %>">
+        <div class="product-details">
+          <div class="product-details1">
+            <div class="product-p">
+              <p>Title: <%= request.books.title %></p>
+              <p>Author: <%= request.books.author %></p>
+            </div>
+            <div>
+              <p class="bold">Condition: $<%= request.books.condition %></p>
+            </div>
+          </div>
+        </div>
+      </div>
     </li>
     <li class="nav-item btn-light">
       <a class="nav-link" href="/">Back to browse</a>
