@@ -48,7 +48,7 @@ puts "creating book seeds"
     file = URI.open("https://www.googleapis.com/books/v1/volumes?q=#{fake_book}").read
     book_response = JSON.parse(file)
     book = book_response['items'].first['volumeInfo']
-    title = book['title']
+    title = fake_book
     puts "adding #{title} to books"
     author = book['authors']
     if author
@@ -88,7 +88,7 @@ puts "creating catalog items"
 quality_arr = ["mint condition", "pretty good", "ok", "slightly ripped", "not great"]
 
 60.times do
-  CatalogItem.create!(quality: quality_arr.sample, user_summary: Faker::Lorem.paragraph(sentence_count: rand(2..4)), available: rand(1..2) == 1 ? true : false, user: User.all.sample, book: Book.all.sample)
+  CatalogItem.create!(quality: quality_arr.sample, available: rand(1..2) == 1 ? true : false, user: User.all.sample, book: Book.all.sample)
 end
 
 puts "finished creating catalog items"
