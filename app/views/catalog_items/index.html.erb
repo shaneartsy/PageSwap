@@ -1,6 +1,10 @@
 
 <div>
-  <h2><%= @user.first_name %>'s Books</h2>
+  <div class="catalog_title">
+    <%= cl_image_tag @user.photo.key, height: '50px', width: '50px', class: "avatar" %>
+    <h2><%= @user.first_name %>'s Books</h2>
+    <div class="width50"><%= link_to "Message", chatroom_path(@chatroom) %></div>
+  </div>
   <div class="product-cards">
     <% @items.each do |item| %>
       <% if item.available %>
