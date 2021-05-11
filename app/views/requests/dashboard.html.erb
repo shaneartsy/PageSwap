@@ -62,6 +62,7 @@
       <% end %>
       <% end %>
       <% end %>
+
       <% if @requests.any? { |request| request.status == "declined" && request.buyer_item.user == current_user } %>
       <div class="dropdown-divider"></div>
       <a class="dropdown-item" href="#">Rejected Swaps</a>
@@ -74,6 +75,7 @@
             <div class="product-p">
               <p>Title: <%= request.buyer_item.book.title %></p>
               <p>Author: <%= request.buyer_item.book.author %></p>
+              <p><%= link_to "Delete", request_path(request), method: :delete %></p>
             </div>
             <div>
               <p class="bold">Condition: <%= request.buyer_item.quality %></p>
