@@ -57,10 +57,5 @@
         <% end %>
       <% end %>
     <% end %>
-
-  <ul>
-    <% @users.each do |user| %>
-      <%= link_to "#{user.first_name}", user_catalog_items_path(user) %>
-    <% end %>
-  </ul>
 </div>
+
