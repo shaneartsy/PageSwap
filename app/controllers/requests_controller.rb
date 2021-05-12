@@ -12,10 +12,24 @@ class RequestsController < ApplicationController
     redirect_to user_catalog_items_path(@buyer_item.user)
   end
 
- def new
+  def new
     @request = Request.new
     @buyer_item = CatalogItem.find(params[:catalog_item_id])
     @my_items = CatalogItem.where(user: current_user)
+  end
+
+  def accept
+    @request = Request.find(params[:id])
+    @request.status = "accepted"
+    @request.save
+    redirect_to pending_swaps_path
+  end
+
+  def decline
+    @request = Request.find(params[:id])
+    @request.status = "declined"
+    @request.save
+    redirect_to pending_swaps_path
   end
 
   def dashboard

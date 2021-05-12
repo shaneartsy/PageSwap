@@ -1,51 +1,63 @@
 <%= render "tabs" %>
 
-<% if @requests.any? { |request| request.buyer_item.user == current_user } %>
-  <h2>Pending Swaps</h2>
-  <% @requests.each do |request| %>
-    <% if request.buyer_item.user == current_user %>
-      <div class="product-card" data-toggle="modal" data-target="#modal-<%= request.id %>">
-        <div class="product-details">
-          <div class="product-details1">
-            <div class="product-p">
-              <p>Title: <%= request.buyer_item.book.title %></p>
-              <p>Author: <%= request.buyer_item.book.author %></p>
+<div class="container">
+  <% if @requests.any? { |request| request.buyer_item.user == current_user } %>
+    <h2>Pending Swaps</h2>
+    <% @requests.each do |request| %>
+      <% if request.buyer_item.user == current_user %>
+        <div class="product-card" data-toggle="modal" data-target="#modal-<%= request.id %>">
+          <div class="product-details">
+            <div class="product-details1">
+              <div class="product-p">
+                <p>Title: <%= request.buyer_item.book.title %></p>
+                <p>Author: <%= request.buyer_item.book.author %></p>
+              </div>
+              <div>
+                <p class="bold">Condition: <%= request.buyer_item.quality %></p>
+              </div>
             </div>
-            <div>
-              <p class="bold">Condition: <%= request.buyer_item.quality %></p>
-            </div>
-          </div>
-          <div class="product-details2">
-            <% if request.buyer_item.book.photo.attached? %>
-            <%= cl_image_tag(request.buyer_item.book.photo.key, crop: :fill, height: 100, class: "product-img") %>
-            <% end %>
-          </div>
-        </div>
-      </div>
-
-      <div class="modal fade" id="modal-<%= request.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <%= simple_form_for(request) do |f| %>
-                <%= f.input :seller_item, collection: @items, label: "Pick form their catalog" %>
-                <%= f.input :status, collection: ["pending", "accepted", "declined"], label: "Accept or decline their request" %>
-                <div class="d-flex justify-content-between">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <%= f.submit class: "btn btn-secondary" %>
-                </div>
+            <div class="product-details2">
+              <% if request.buyer_item.book.photo.attached? %>
+              <%= cl_image_tag(request.buyer_item.book.photo.key, crop: :fill, height: 100, class: "product-img") %>
               <% end %>
             </div>
           </div>
         </div>
-      </div>
 
+        <div class="modal fade" id="modal-<%= request.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="d-flex justify-content-center mt-3">
+                <h5 class="modal-title" id="exampleModalLabel"><%= request.buyer_item.book.title %></h5>
+              </div>
+
+              <% items = [] %>
+              <% request.user.catalog_items.each do |item| %>
+                <% items << [item.book.title, item.id] %>
+              <% end %>
+              <div class="modal-body mt-2">
+                <%= simple_form_for(request) do |f| %>
+                  <%= f.input :seller_item, collection: items, label: "Pick form their catalog" %>
+                  <% if request.seller_item %>
+                    <p>They suggest <%= request.seller_item.book.title %></p>
+                  <% end %>
+                  <div class="d-flex justify-content-between">
+                    <%= link_to "Decline", decline_path(request), class: "btn btn-secondary", method: :patch %>
+                    <%= link_to "Accept", accept_path(request), class: "btn btn-secondary", method: :patch  %>
+                  </div>
+                  <div class="d-flex justify-content-between mt-2">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <%= f.submit class: "btn btn-secondary" %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <% end %>
     <% end %>
+  <% else %>
+    <h2> No Pending Requests Exsist </h2>
   <% end %>
-<% end %>
+</div>

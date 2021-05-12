@@ -1,0 +1,28 @@
+.medium-title {
+  font-size: 14px;
+  overflow: hidden;
+  margin-bottom: 5px;
+}
+
+.your-book {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.their-book {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: end;
+}
+
+.modal-content {
+  height: 400px;
+}
+
+.modal-body {
+  padding: 6px;
+}

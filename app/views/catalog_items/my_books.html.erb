@@ -1,5 +1,6 @@
 <%= render 'requests/tabs' %>
 
+<div class="container">
  <h2>My Books</h2>
   <% @items.each do |item| %>
     <% if item.user == current_user %>
@@ -42,3 +43,4 @@
       </div>
     <% end %>
   <% end %>
+</div>
