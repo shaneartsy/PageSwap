@@ -20,6 +20,12 @@ class RequestsController < ApplicationController
   def accept
     @request = Request.find(params[:id])
     @request.status = "accepted"
+    if @request.buyer_item
+      @request.buyer_item.update(available: false)
+    end
+    if @request.seller_item
+      @request.seller_item.update(available: false)
+    end
     @request.save
     redirect_to pending_swaps_path
   end
@@ -36,7 +42,7 @@ class RequestsController < ApplicationController
   end
 
   def pending_swaps
-    @requests = Request.where(status: 'pending')
+    @requests = Request.where(status: 'pending').sort { |a, b| a.buyer_item.book.title <=> b.buyer_item.book.title }
     @items = []
     CatalogItem.where(user: current_user).each do |item|
       @items << [item.book.title, item.id]
@@ -44,7 +50,7 @@ class RequestsController < ApplicationController
   end
 
   def accepted_swaps
-    @requests = Request.where(status: 'accepted')
+    @requests = Request.where(status: 'accepted').sort { |a, b| a.buyer_item.book.title <=> b.buyer_item.book.title }
     @items = []
     CatalogItem.where(user: current_user).each do |item|
       @items << [item.book.title, item.id]
@@ -52,7 +58,7 @@ class RequestsController < ApplicationController
   end
 
   def declined_swaps
-    @requests = Request.where(status: 'declined')
+    @requests = Request.where(status: 'declined').sort { |a, b| a.buyer_item.book.title <=> b.buyer_item.book.title }
     @items = []
     CatalogItem.where(user: current_user).each do |item|
       @items << [item.book.title, item.id]
