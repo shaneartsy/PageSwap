@@ -1,0 +1,10 @@
+
+
+    <%= simple_form_for([@buyer_item, @request]) do |form| %>
+    <%= form.input :seller_item, collection: @my_items, label: "Suggest Swap", label_method: -> (x)  { x.book.title } %>
+    <%= form.input :buyer_item, input_html: {value: @buyer_item.id, label_method: -> (x)  { x.book.title }}, disabled: true, as: :hidden %>
+    <%= simple_fields_for :other do |f| %>
+    <%= f.input :buyer_item, input_html: {value: @buyer_item.book.title, label_method: -> (x)  { x.book.title }}, disabled: true %>
+    <% end %>
+    <%= form.submit %>
+    <% end %>
