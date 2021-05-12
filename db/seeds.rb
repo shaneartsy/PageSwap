@@ -155,6 +155,16 @@ end
   request.save
 end
 
+20.times do
+  ci1 = CatalogItem.all.sample
+  ci_arr = CatalogItem.all.filter { |item| item != ci1 }
+  ci2 = ci_arr.sample
+  request = Request.new(user: User.all.sample, status: "completed")
+  request.buyer_item = ci1
+  request.seller_item = ci2
+  request.save
+end
+
 puts "finished creating requests"
 
 puts "creating user reviews"
