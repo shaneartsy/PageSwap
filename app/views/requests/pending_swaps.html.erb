@@ -1,6 +1,6 @@
 <%= render "tabs" %>
 
-<div class="container">
+<div class="container mt-3">
   <% if @requests.any? { |request| request.buyer_item.user == current_user } %>
     <h2>Pending Swaps</h2>
     <% @requests.each do |request| %>
