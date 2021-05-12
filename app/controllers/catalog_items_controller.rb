@@ -62,6 +62,10 @@ class CatalogItemsController < ApplicationController
     end
   end
 
+  def my_books
+    @items = CatalogItem.where(user: current_user)
+  end
+
   def create
     @item = CatalogItem.new(catalog_item_params)
     @item.book = Book.find(params[:catalog_item][:book])
