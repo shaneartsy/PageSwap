@@ -62,8 +62,23 @@ class CatalogItemsController < ApplicationController
     end
   end
 
+  def make_unavailable
+    item = CatalogItem.find(params[:id])
+    item.available = false
+    item.save
+    redirect_to my_books_path
+  end
+
+  def make_available
+    item = CatalogItem.find(params[:id])
+    item.available = true
+    item.save
+    redirect_to my_books_path
+  end
+
   def my_books
-    @items = CatalogItem.where(user: current_user)
+    items = CatalogItem.where(user: current_user)
+    @items = items.sort { |a, b| a.book.title <=> b.book.title }
   end
 
   def create
