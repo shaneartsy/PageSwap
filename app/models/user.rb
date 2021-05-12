@@ -12,7 +12,6 @@ class User < ApplicationRecord
   has_many :books, through: :catalog_items
   has_one_attached :photo
 
-
   include PgSearch::Model
   multisearchable against: [:first_name, :email]
 
@@ -25,5 +24,7 @@ class User < ApplicationRecord
     ratings_sum = ratings.sum
     ratings_count = ratings.count
     ratings_devied = ratings_sum / ratings.count
-    end
   end
+end
+
+

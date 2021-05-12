@@ -5,10 +5,17 @@ class CatalogItemsController < ApplicationController
     @items = @user.catalog_items
     @chatroom = Chatroom.all.filter { |room| (room.user1 == current_user && room.user2 == @user) || (room.user2 == current_user && room.user1 == @user) }
     if @chatroom.empty?
-      @chatroom = Chatroom.create(user1: @user, user2: current_user)
+      @chatroom = Chatroom.new(user1: @user)
+      @chatroom.user2 = current_user
+      @chatroom.save
     else
       @chatroom = @chatroom.first
     end
+    @my_items = []
+    CatalogItem.where(user: current_user).each do |item|
+      @my_items << [item.book.title, item.id]
+    end
+    @request = Request.new
   end
 
   def new
