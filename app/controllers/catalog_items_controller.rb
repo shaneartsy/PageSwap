@@ -84,4 +84,3 @@ class CatalogItemsController < ApplicationController
     params.require(:catalog_item).permit(:quality, :available)
   end
 end
-

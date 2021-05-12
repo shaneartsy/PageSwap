@@ -21,6 +21,12 @@ class RequestsController < ApplicationController
   def accept
     @request = Request.find(params[:id])
     @request.status = "accepted"
+    if @request.buyer_item
+      @request.buyer_item.update(available: false)
+    end
+    if @request.seller_item
+      @request.seller_item.update(available: false)
+    end
     @request.save
     redirect_to pending_swaps_path
   end
