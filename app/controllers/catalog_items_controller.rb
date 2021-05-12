@@ -76,6 +76,41 @@ class CatalogItemsController < ApplicationController
     redirect_to my_books_path
   end
 
+  def make_mint
+    item = CatalogItem.find(params[:id])
+    item.quality = "Mint"
+    item.save
+    redirect_to my_books_path
+  end
+
+  def make_near_mint
+    item = CatalogItem.find(params[:id])
+    item.quality = "Near-mint"
+    item.save
+    redirect_to my_books_path
+  end
+
+  def make_good
+    item = CatalogItem.find(params[:id])
+    item.quality = "Good"
+    item.save
+    redirect_to my_books_path
+  end
+
+  def make_worn
+    item = CatalogItem.find(params[:id])
+    item.quality = "Worn"
+    item.save
+    redirect_to my_books_path
+  end
+
+  def make_poor
+    item = CatalogItem.find(params[:id])
+    item.quality = "Poor"
+    item.save
+    redirect_to my_books_path
+  end
+
   def my_books
     items = CatalogItem.where(user: current_user)
     @items = items.sort { |a, b| a.book.title <=> b.book.title }
