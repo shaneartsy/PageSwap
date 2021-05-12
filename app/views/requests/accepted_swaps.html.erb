@@ -1,7 +1,5 @@
 <%= render "tabs" %>
 
-<% if @requests.any? { |request| request.buyer_item.user == current_user } %>
-
   <h2>Accepted Swaps</h2>
   <% @requests.each do |request| %>
     <% if request.buyer_item.user == current_user %>
@@ -49,4 +47,3 @@
       </div>
     <% end %>
   <% end %>
-<% end %>
