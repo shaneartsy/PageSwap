@@ -35,14 +35,13 @@
             </div>
             <div class="modal-body">
               <%= simple_form_for(request) do |f| %>
-                <%= f.input :seller_item, collection: @items %>
-                <%= f.input :status, collection: ["pending", "accepted", "declined"] %>
-                <%= f.submit %>
+                <%= f.input :seller_item, collection: @items, label: "Pick form their catalog" %>
+                <%= f.input :status, collection: ["pending", "accepted", "declined"], label: "Accept or decline their request" %>
+                <div class="d-flex justify-content-between">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <%= f.submit class: "btn btn-secondary" %>
+                </div>
               <% end %>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
             </div>
           </div>
         </div>
