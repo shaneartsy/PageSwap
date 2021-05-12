@@ -12,7 +12,15 @@
               <p>Author: <%= item.book.author %></p>
             </div>
             <div>
-              <p class="bold">Condition: <%= item.quality %></p>
+              <p class="bold">Condition: <%= item.quality %>
+                <select>
+                  <option>Mint</option>
+                  <option>Near-mint</option>
+                  <option>Great</option>
+                  <option>Worn</option>
+                  <option>Poor</option>
+                </select>
+              </p>
             </div>
           </div>
           <div class="product-details2">
