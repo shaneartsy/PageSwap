@@ -1,8 +1,7 @@
 <%= render "tabs" %>
 
-<% if @requests.any? { |request| request.buyer_item.user == current_user } %>
-      <div class="dropdown-divider"></div>
 
+<div class="container">
   <h2>Rejected Swaps</h2>
   <% @requests.each do |request| %>
     <% if request.buyer_item.user == current_user %>
@@ -20,7 +19,7 @@
           </div>
           <div class="product-details2">
             <% if request.buyer_item.book.photo.attached? %>
-            <%= cl_image_tag(request.buyer_item.book.photo.key, crop: :fill, height: 100, class: "product-img") %>
+              <%= cl_image_tag(request.buyer_item.book.photo.key, crop: :fill, height: 100, class: "product-img") %>
             <% end %>
           </div>
         </div>
@@ -50,4 +49,4 @@
       </div>
     <% end %>
   <% end %>
-<% end %>
+</div>

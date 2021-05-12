@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   get 'requests/declined_swaps', to: 'requests#declined_swaps', as: 'declined_swaps'
   get 'requests/past_swaps', to: 'requests#past_swaps', as: 'past_swaps'
   get 'catalog_items/my_books', to: 'catalog_items#my_books', as: 'my_books'
+  patch 'requests/:id/accept', to: 'requests#accept', as: 'accept'
+  patch 'requests/:id/decline', to: 'requests#decline', as: 'decline'
   resources :users do
     resources :catalog_items, only: [:index]
   end
