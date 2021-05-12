@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   get 'catalog_items/my_books', to: 'catalog_items#my_books', as: 'my_books'
   patch 'requests/:id/accept', to: 'requests#accept', as: 'accept'
   patch 'requests/:id/decline', to: 'requests#decline', as: 'decline'
+  patch 'catalog_items/:id/make_available', to: 'catalog_items#make_available', as: 'make_available'
+  patch 'catalog_items/:id/make_unavailable', to: 'catalog_items#make_unavailable', as: 'make_unavailable'
   resources :users do
     resources :catalog_items, only: [:index]
   end

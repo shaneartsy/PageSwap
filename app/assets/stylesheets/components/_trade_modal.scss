@@ -27,3 +27,9 @@
 .modal-height {
   height: 400px;
 }
+
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
