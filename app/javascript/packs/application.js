@@ -26,10 +26,10 @@ require("channels")
 import "bootstrap";
 
 // Internal imports, e.g:
-// import { initSelect2 } from '../components/init_select2';
+import { bindingBooks } from './binding_books.js';
 
 document.addEventListener('turbolinks:load', () => {
-
+  bindingBooks()
 
 
   // Call your functions here, e.g:
