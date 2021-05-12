@@ -11,6 +11,10 @@ Rails.application.routes.draw do
   get 'pages/about_us', to: 'pages#about_us'
   get 'pages/faq', to: 'pages#faq'
   get 'requests/dashboard', to: 'requests#dashboard', as: 'dashboard'
+  get 'requests/pending_swaps', to: 'requests#pending_swaps', as: 'pending_swaps'
+  get 'requests/accepted_swaps', to: 'requests#accepted_swaps', as: 'accepted_swaps'
+  get 'requests/declined_swaps', to: 'requests#declined_swaps', as: 'declined_swaps'
+  get 'requests/past_swaps', to: 'requests#past_swaps', as: 'past_swaps'
   resources :users do
     resources :catalog_items, only: [:index]
   end

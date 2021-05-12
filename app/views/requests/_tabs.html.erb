@@ -1,0 +1,20 @@
+<div class="create mt-3">
+  <%= link_to "Add to my bookshelf", new_catalog_item_path, class: "btn-success p-2" %>
+</div>
+<ul class="nav nav-pills mt-3 justify-content-center">
+  <li class="nav-item">
+    <a class="nav-link active" href="#">My Books</a>
+  </li>
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle btn-info" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Swaps</a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <%= link_to "Pending Swaps", pending_swaps_path, class: "dropdown-item" %>
+        <%= link_to "Accepted Swaps", accepted_swaps_path, class: "dropdown-item" %>
+        <%= link_to "Rejected Swaps", declined_swaps_path, class: "dropdown-item" %>
+        <%= link_to "Past Swaps", pending_swaps_path, class: "dropdown-item" %>
+      <li class="nav-item btn-light">
+        <a class="nav-link" href="/">Back to browse</a>
+      </li>
+    </div>
+  </li>
+</ul>

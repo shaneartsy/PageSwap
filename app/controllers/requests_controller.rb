@@ -17,6 +17,45 @@ class RequestsController < ApplicationController
     end
   end
 
+  def pending_swaps
+    @requests = Request.where(status: 'pending')
+    @items = []
+    CatalogItem.where(user: current_user).each do |item|
+      @items << [item.book.title, item.id]
+    end
+  end
+
+  def accepted_swaps
+    @requests = Request.where(status: 'accepted')
+    @items = []
+    CatalogItem.where(user: current_user).each do |item|
+      @items << [item.book.title, item.id]
+    end
+  end
+
+  def declined_swaps
+    @requests = Request.where(status: 'declined')
+    @items = []
+    CatalogItem.where(user: current_user).each do |item|
+      @items << [item.book.title, item.id]
+    end
+  end
+
+  def past_swaps
+    @requests = []
+    Request.all.each do |request|
+      if request.buyer_item.user == current_user
+        @requests << ["recieved", request.buyer_item]
+      elsif request.seller_item.user == current_user
+        @requests << ["recieved", request.seller_item]
+      end
+    end
+    @items = []
+    CatalogItem.where(user: current_user).each do |item|
+      @items << [item.book.title, item.id]
+    end
+  end
+
   def destroy
     request = Request.find(params[:id])
     request.delete
