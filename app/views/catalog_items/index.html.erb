@@ -3,6 +3,7 @@
   <div class="catalog_title">
     <%= cl_image_tag @user.photo.key, height: '50px', width: '50px', class: "avatar" %>
     <h2><%= @user.first_name %>'s Books</h2>
+    <p> Rating: <%=  @user.average_rating %></P>
     <div class="width50">
       <% if user_signed_in? %>
         <%= link_to "Message", chatroom_path(@chatroom) %>
