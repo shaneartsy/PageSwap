@@ -53,6 +53,16 @@
                 <%= link_to "Make available", make_available_path(item), class: "btn btn-secondary", method: :patch %>
               <% end %>
             </div>
+            <div>
+              <a class="nav-link dropdown-toggle btn-info" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Condition</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <%= link_to "Mint", make_mint_path(item), class: "dropdown-item", method: :patch %>
+                  <%= link_to "Near-mint", make_near_mint_path(item), class: "dropdown-item", method: :patch %>
+                  <%= link_to "Good", make_good_path(item), class: "dropdown-item", method: :patch%>
+                  <%= link_to "Worn", make_worn_path(item), class: "dropdown-item", method: :patch %>
+                  <%= link_to "Poor", make_poor_path(item), class: "dropdown-item", method: :patch %>
+                </div>
+            </div>
           </div>
         </div>
       </div>

@@ -1,5 +1,4 @@
 class RequestsController < ApplicationController
-
   def create
     @request = Request.new
     @buyer_item = CatalogItem.find(params[:catalog_item_id])
