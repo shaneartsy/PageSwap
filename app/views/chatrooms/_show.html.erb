@@ -1,13 +1,13 @@
 <div class="messages-page">
-  <div id="messages" data-chatroom-id="<%= @chatroom.id %>">
-    <% if @chatroom.messages.size != 0 %>
-      <% @chatroom.messages.each do |message| %>
+  <div id="messages" data-chatroom-id="<%= chatroom.id %>">
+    <% if chatroom.messages.size != 0 %>
+      <% chatroom.messages.each do |message| %>
         <%= render "message", message: message %>
       <% end %>
     <% end %>
   </div>
   <div class="message-form">
-    <%= simple_form_for [ @chatroom, @message ], remote: true do |f| %>
+    <%= simple_form_for [ chatroom, message ], remote: true do |f| %>
       <%= f.input :content, label: false, placeholder: "Type message here", class: "message-input" %>
       <%= f.button :submit, "Send", class: "send-button" %>
     <% end %>
