@@ -30,6 +30,13 @@ class RequestsController < ApplicationController
     redirect_to pending_swaps_path
   end
 
+  def complete
+    @request = Request.find(params[:id])
+    @request.status = "completed"
+    @request.save
+    redirect_to past_swaps_path
+  end
+
   def decline
     @request = Request.find(params[:id])
     @request.status = "declined"
@@ -59,21 +66,6 @@ class RequestsController < ApplicationController
 
   def declined_swaps
     @requests = Request.where(status: 'declined').sort { |a, b| a.buyer_item.book.title <=> b.buyer_item.book.title }
-    @items = []
-    CatalogItem.where(user: current_user).each do |item|
-      @items << [item.book.title, item.id]
-    end
-  end
-
-  def past_swaps
-    @requests = []
-    Request.all.each do |request|
-      if request.buyer_item.user == current_user
-        @requests << ["recieved", request.buyer_item]
-      elsif request.seller_item.user == current_user
-        @requests << ["recieved", request.seller_item]
-      end
-    end
     @items = []
     CatalogItem.where(user: current_user).each do |item|
       @items << [item.book.title, item.id]
