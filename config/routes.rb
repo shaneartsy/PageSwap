@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   end
   get 'chatrooms/:id/show_room', to: 'chatrooms#show_room', as: 'show_room'
   get 'chatrooms/:user_id/show_room_user', to: 'chatrooms#show_user_room', as: 'user_room'
-  resources :catalog_items, only: [:new, :create] do
+  resources :catalog_items, only: [:new, :create, :destroy] do
     resources :requests, only: [:create, :new]
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
