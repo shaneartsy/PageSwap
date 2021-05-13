@@ -139,7 +139,8 @@ puts "Creating requests"
   ci1 = CatalogItem.all.sample
   ci_arr = CatalogItem.all.filter { |item| item != ci1 }
   ci2 = rand(1..3) == 1 ? nil : ci_arr.sample
-  request = Request.new(user: User.all.sample, status: status_arr.sample)
+  ci2 ? user = ci2.user : user = User.all.sample
+  request = Request.new(user: user, status: status_arr.sample)
   request.buyer_item = ci1
   request.seller_item = ci2
   request.save
@@ -149,7 +150,7 @@ end
   ci1 = CatalogItem.all.sample
   ci_arr = CatalogItem.all.filter { |item| item != ci1 }
   ci2 = ci_arr.sample
-  request = Request.new(user: User.all.sample, status: "accepted")
+  request = Request.new(user: ci2.user, status: "accepted")
   request.buyer_item = ci1
   request.seller_item = ci2
   request.save
@@ -159,7 +160,7 @@ end
   ci1 = CatalogItem.all.sample
   ci_arr = CatalogItem.all.filter { |item| item != ci1 }
   ci2 = ci_arr.sample
-  request = Request.new(user: User.all.sample, status: "completed")
+  request = Request.new(user: ci2.user, status: "completed")
   request.buyer_item = ci1
   request.seller_item = ci2
   request.save
