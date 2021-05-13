@@ -117,14 +117,19 @@ class CatalogItemsController < ApplicationController
   end
 
   def create
+    binding.pry
     @item = CatalogItem.new(catalog_item_params)
-    @item.book = Book.find(params[:catalog_item][:book])
-    @item.user = current_user
-    if @item.save
-      redirect_to dashboard_path
+    if params[:catalog_item]
+      @item.book = Book.find(params[:catalog_item][:book])
+      @item.user = current_user
+      if @item.save
+        redirect_to dashboard_path
+      else
+        @results = []
+        render :new
+      end
     else
-      @results = []
-      render :new
+
     end
   end
 
