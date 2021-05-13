@@ -30,9 +30,6 @@ import { bindingBooks } from './binding_books.js';
 
 document.addEventListener('turbolinks:load', () => {
   bindingBooks()
-$(document).ready(function() {
-  $('#rateMe1').mdbRate();
-});
 
 
   // Call your functions here, e.g:
