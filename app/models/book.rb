@@ -14,10 +14,6 @@ class Book < ApplicationRecord
     ratings_count = ratings.count
     ratings_devied = ratings_sum / ratings.count
 
-
-
     validates :title, presence: true
   end
 end
-
-
