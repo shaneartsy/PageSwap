@@ -3,6 +3,7 @@ class BooksController < ApplicationController
 
   def show
     @book_review = BookReview.new
+    @item = CatalogItem.new
     @users = User.all.filter { |user| user != current_user }
     @book = Book.find(params[:id])
     if params[:ci_id]
