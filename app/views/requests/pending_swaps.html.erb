@@ -75,6 +75,11 @@
                   <div class="d-flex justify-content-between mt-2">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <%= f.submit class: "btn btn-secondary" %>
+                    <% if request.buyer_item.user == current_user %>
+                      <%= link_to "Message", user_room_path(request.buyer_item.user), class: "btn btn-secondary" %>
+                    <% else %>
+                      <%= link_to "Message", user_chatroom_path(request.seller_item.user), class: "btn btn-secondary" %>
+                    <% end %>
                   </div>
                 <% end %>
               </div>

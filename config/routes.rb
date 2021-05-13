@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
-  resources :chatrooms, only: [:show, :index] do
+  resources :chatrooms, only: [:index] do
     resources :messages, only: :create
   end
   resources :books, only: %i[show] do
@@ -28,6 +28,8 @@ Rails.application.routes.draw do
   resources :users do
     resources :catalog_items, only: [:index]
   end
+  get 'chatrooms/:id/show_room', to: 'chatrooms#show_room', as: 'show_room'
+  get 'chatrooms/:user_id/show_room_user', to: 'chatrooms#show_user_room', as: 'user_room'
   resources :catalog_items, only: [:new, :create] do
     resources :requests, only: [:create, :new]
   end
