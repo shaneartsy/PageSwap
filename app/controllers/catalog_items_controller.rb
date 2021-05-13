@@ -62,6 +62,12 @@ class CatalogItemsController < ApplicationController
     end
   end
 
+  def destroy
+    catalog_item = CatalogItem.find(params[:id])
+    catalog_item.destroy
+    redirect_to my_books_path
+  end
+
   def make_unavailable
     item = CatalogItem.find(params[:id])
     item.available = false
