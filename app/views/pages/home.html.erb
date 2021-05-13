@@ -1,16 +1,18 @@
-<h1>PageSwap</h1>
-<p>Read, Swap, Repeat.</p>
+<div class="background">
+  <div class="d-flex align-items-center flex-column">
+    <h1>PageSwap</h1>
+    <p>Read, Swap, Repeat.</p>
 
-<%= form_tag root_path, method: :get, html: { autocomplete: "off" } do %>
-  <%= text_field_tag :query,
-    params[:query],
-    autocomplete: 'off',
-    class: "form-control",
-    placeholder: "Find a book or user"
-  %>
-  <%= submit_tag "Search", class: "btn btn-primary" %>
-<% end %>
-
+  <%= form_tag root_path, method: :get, html: { autocomplete: "off" } do %>
+    <%= text_field_tag :query,
+      params[:query],
+      autocomplete: 'off',
+      class: "form-control",
+      placeholder: "Find a book or user"
+    %>
+    <%= submit_tag "Search", class: "btn btn-primary" %>
+  <% end %>
+</div>
 <% if @results != nil %>
   <% @results.each do |result| %>
     <% if result.class.name == "Book" %>
@@ -56,9 +58,5 @@
       <% end %>
     <% end %>
   <% end %>
+</div>
 
-<ul>
-  <% @users.each do |user| %>
-    <%= link_to "#{user.first_name}", user_catalog_items_path(user) %>
-  <% end %>
-</ul>

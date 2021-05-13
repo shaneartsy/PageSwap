@@ -1,7 +1,7 @@
 <% @chatrooms.each do |room| %>
   <% if room.user1 == current_user && room.user2 != current_user %>
     <div>
-      <%= link_to chatroom_path(room.user2) do %>
+      <%= link_to show_room_path(room) do %>
         <div class="user-messages">
           <div class="width100p">
             <%= cl_image_tag room.user2.photo.key, height: '50px', width: '50px', class: "avatar" %>
@@ -13,7 +13,7 @@
     </div>
   <% elsif room.user2 == current_user && room.user1 != current_user %>
     <div>
-      <%= link_to chatroom_path(room.user1) do %>
+      <%= link_to show_room_path(room) do %>
         <div class="user-messages">
           <div class="width100p">
             <%= cl_image_tag room.user1.photo.key, height: '45px', width: '45px', class: "avatar" %>
