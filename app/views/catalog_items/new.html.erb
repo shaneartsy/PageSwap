@@ -40,7 +40,7 @@
   <%= simple_form_for(@item) do |f| %>
       <%= f.input :quality %>
       <%= f.input :book, collection: @results.reverse, as: :hidden %>
-      <%= f.input :available, collection: [["Available", true], ["Not Available", false]] %>
+      <%= f.input :available, as: :radio_buttons, label: "Mark as available" %>
     <%= f.submit %>
   <% end %>
 </div>

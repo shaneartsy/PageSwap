@@ -117,7 +117,6 @@ class CatalogItemsController < ApplicationController
   end
 
   def create
-    binding.pry
     @item = CatalogItem.new(catalog_item_params)
     if params[:catalog_item]
       @item.book = Book.find(params[:catalog_item][:book])
