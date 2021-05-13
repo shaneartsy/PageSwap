@@ -90,7 +90,6 @@ puts "finsihed creating book reviews"
 puts "creating catalog items"
 
 quality_arr = ["mint condition", "pretty good", "ok", "slightly ripped", "not great"]
-
 60.times do
   CatalogItem.create!(quality: quality_arr.sample, available: rand(1..2) == 1 ? true : false, user: User.all.sample, book: Book.all.sample)
 end
