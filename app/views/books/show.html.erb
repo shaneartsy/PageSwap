@@ -52,7 +52,6 @@
   </div>
 </div>
 <div class="reviews">
-
   <h4>Reviews</h4>
   <% if user_signed_in? %>
     <%= simple_form_for ([@book, @book_review]), remote: true, html: { autocomplete: 'off' } do |f| %>
