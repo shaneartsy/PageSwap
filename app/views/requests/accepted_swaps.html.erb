@@ -4,20 +4,30 @@
   <h2>Accepted Swaps</h2>
   <% @requests.each do |request| %>
     <% if request.buyer_item.user == current_user %>
-      <div class="product-card" data-toggle="modal" data-target="#modal-<%= request.id %>">
-        <div class="product-details">
-          <div class="product-details1-smaller">
-            <p class="small-title"><%= request.buyer_item.user.first_name %></p>
+      <% @other = request.seller_item.user %>
+    <% elsif request.seller_item.user == current_user %>
+      <% @other = request.buyer_item.user %>
+    <% end %>
+      <div class="product-card2 d-flex">
+        <div>
+          <%= render 'shared/profile', user: current_user %>
+          <p class="small-title"><%= current_user.first_name %></p>
+        </div>
+        <div class="product-details2" data-toggle="modal" data-target="#modal-<%= request.id %>">
+          <div class="product-details1-smaller2">
             <% if request.buyer_item.book.photo.attached? %>
               <%= cl_image_tag(request.buyer_item.book.photo.key, crop: :fill, height: 80, class: "product-img-smaller") %>
             <% end %>
           </div>
-          <div class="product-details2-smaller">
+          <div class="product-details2-smaller2">
             <% if request&.seller_item&.book&.photo&.attached? %>
               <%= cl_image_tag(request.seller_item.book.photo.key, crop: :fill, height: 80, class: "product-img-smaller") %>
             <% end %>
-            <p class="small-title"><%= request.user.first_name %></p>
           </div>
+        </div>
+        <div>
+          <%= render 'shared/profile', user: @other %>
+          <p class="small-title"><%= @other.first_name %></p>
         </div>
       </div>
 
@@ -35,7 +45,7 @@
                 <div>
                   <p class="medium-title"><span class="bold">Title:</span> <%= request.buyer_item.book.title %></p>
                   <p class="medium-title"><span class="bold">Author:</span> <%= request.buyer_item.book.author %></p>
-                  <p class="medium-title"><span class="bold">Owner:</span> <%= request.buyer_item.user.first_name %></p>
+                  <p class="medium-title"><span class="bold">Owner:</span> <%= current_user.first_name %></p>
                 </div>
               </div>
               <div class="d-flex align-items-center">
@@ -45,27 +55,22 @@
                 <div>
                   <p class="medium-title"><span class="bold">Title:</span> <%= request&.seller_item&.book&.title %></p>
                   <p class="medium-title"><span class="bold">Author:</span> <%= request&.seller_item&.book&.author %></p>
-                  <p class="medium-title"><span class="bold">Owner:</span> <%= request.user.first_name %></p>
+                  <p class="medium-title"><span class="bold">Owner:</span> <%= @other.first_name %></p>
                 </div>
                 <div class="d-flex justify-content-end width100">
                   <% if request&.seller_item&.book&.photo&.attached? %>
                     <%= cl_image_tag(request&.seller_item&.book&.photo&.key, crop: :fill, height: 130, width: 82, class: "product-img") %>
                   <% end %>
                 </div>
+              </div>
 
               </div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <% if request.buyer_item.user == current_user %>
-                <%= link_to "Message", user_room_path(request.buyer_item.user), class: "btn btn-secondary" %>
-              <% else %>
-                <%= link_to "Message", user_chatroom_path(request.seller_item.user), class: "btn btn-secondary" %>
-              <% end %>
+              <%= link_to "Message", user_room_path(@other), class: "btn btn-secondary" %>
             </div>
           </div>
         </div>
-      </div>
     <% end %>
-  <% end %>
 </div>

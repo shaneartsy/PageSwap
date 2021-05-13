@@ -1,0 +1,41 @@
+<div data-toggle="modal" data-target="#modal-<%= user.id %>">
+  <%= cl_image_tag current_user.photo.key, height: '45px', width: '45px', class: "avatar" %>
+</div>
+
+<div class="modal fade" id="modal-<%= user.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content modal-height">
+      <div class="d-flex justify-content-center mt-3">
+        <h5 class="modal-title" id="exampleModalLabel"><%= user.first_name %></h5>
+      </div>
+      <div class="modal-body d-flex">
+        <div class="profile-top">
+          <div class="profile-left">
+            <%= cl_image_tag current_user.photo.key, height: '50px', width: '50px', class: "avatar" %>
+          </div>
+          <div class="profile-right">
+            <h3><%= user.first_name %></h3>
+            <ol>
+              <% i = 0 %>
+              <% 5.times do %>
+                <% if user.catalog_items[i] %>
+                  <li><%= user.catalog_items[i].book.title %></li>
+                  <% i += 1 %>
+                <% else %>
+                  <% break %>
+                <% end %>
+              <% end %>
+            </ol>
+          </div>
+        </div>
+        <div class="profile-">
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <%= link_to "Message", user_room_path(user), class: "btn btn-secondary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
