@@ -5,6 +5,13 @@ class PagesController < ApplicationController
 
   def home
     @users = User.all
+    @items = CatalogItem.all
+    @markers = @items.geocoded.map do |item|
+      {
+        lat: item.latitude,
+        lng: item.longitude
+      }
+    end
     puts params
     @results = []
     if params[:query].present?
