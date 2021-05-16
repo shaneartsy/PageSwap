@@ -73,10 +73,19 @@ class RequestsController < ApplicationController
   def update
     request = Request.find(params[:id])
     request.update(request_params)
-    item = CatalogItem.find(params[:request][:seller_item])
-    request.seller_item = item
-    request.save
-    redirect_to dashboard_path
+    @requests = Request.where(status: 'pending').sort { |a, b| a.buyer_item.book.title <=> b.buyer_item.book.title }
+      @items = []
+      CatalogItem.where(user: current_user).each do |item|
+        @items << [item.book.title, item.id]
+      end
+    if params[:request][:seller_item] != ""
+      item = CatalogItem.find(params[:request][:seller_item])
+      request.seller_item = item
+      request.save
+      redirect_to pending_swaps_path
+    else
+      render :pending_swaps
+    end
   end
 
   private
