@@ -13,21 +13,33 @@
           <%= render 'shared/profile', user: current_user %>
           <p class="small-title"><%= current_user.first_name %></p>
         </div>
-        <div class="product-details2" data-toggle="modal" data-target="#modal-<%= request.id %>">
+        <div class="product-details3" data-toggle="modal" data-target="#modal-<%= request.id %>">
           <div class="product-details1-smaller2">
             <% if request.buyer_item.book.photo.attached? %>
               <%= cl_image_tag(request.buyer_item.book.photo.key, crop: :fill, height: 80, class: "product-img-smaller") %>
             <% end %>
+            <p class="small-title"><%= request.buyer_item.book.title %></p>
+          </div>
+          <div class="d-flex align-items-center">
+            <%= image_tag("https://image.flaticon.com/icons/png/512/335/335522.png", crop: :fill, height: 15) %>
           </div>
           <div class="product-details2-smaller2">
-            <% if request&.seller_item&.book&.photo&.attached? %>
-              <%= cl_image_tag(request.seller_item.book.photo.key, crop: :fill, height: 80, class: "product-img-smaller") %>
+            <% if request.seller_item %>
+              <p class="small-title"><%= request.seller_item.book.title %></p>
+              <% if request&.seller_item&.book&.photo&.attached? %>
+                <%= cl_image_tag(request.seller_item.book.photo.key, crop: :fill, height: 80, class: "product-img-smaller") %>
+              <% end %>
+            <% else %>
+              <p class="small-title"><%= request.user.first_name %> didnt suggest a book</p>
+              <%= image_tag("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6Dw1Etemhe9K_LEK8pXzVO0X2tnqkMW8q4Q&usqp=CAU", crop: :fill, height: 80, class: "product-img-smaller") %>
             <% end %>
           </div>
         </div>
         <div>
-          <%= render 'shared/profile', user: @other %>
-          <p class="small-title"><%= @other.first_name %></p>
+          <% if @other %>
+            <%= render 'shared/profile', user: @other %>
+            <p class="small-title"><%= @other.first_name %></p>
+          <% end %>
         </div>
       </div>
 
@@ -55,7 +67,9 @@
                 <div>
                   <p class="medium-title"><span class="bold">Title:</span> <%= request&.seller_item&.book&.title %></p>
                   <p class="medium-title"><span class="bold">Author:</span> <%= request&.seller_item&.book&.author %></p>
+                  <% if @other %>
                   <p class="medium-title"><span class="bold">Owner:</span> <%= @other.first_name %></p>
+                  <% end %>
                 </div>
                 <div class="d-flex justify-content-end width100">
                   <% if request&.seller_item&.book&.photo&.attached? %>
@@ -63,14 +77,15 @@
                   <% end %>
                 </div>
               </div>
-
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <%= link_to "Message", user_room_path(@other), class: "btn btn-secondary" %>
             </div>
           </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <% if @other %>
+              <%= link_to "Message", user_room_path(@other), class: "btn btn-secondary" %>
+            <% end %>
+          </div>
         </div>
+      </div>
     <% end %>
-</div>
+  </div>
