@@ -38,8 +38,12 @@
       </div>
     </div>
   </div>
-  <div class="book-header-right">
-    <h4 class="your-area">In your area</h4>
+  <div class="book-header-right p-1">
+    <% if @coffee_shops.empty? %>
+      <h4 class="your-area">No users with this book in your area</h4>
+    <% else %>
+      <h4 class="your-area">Users with this book in your area</h4>
+    <% end %>
     <ul>
       <% @coffee_shops.each do |shop| %>
       <% i = 0 %>
