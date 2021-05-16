@@ -6,6 +6,13 @@ class BooksController < ApplicationController
     @item = CatalogItem.new
     @users = User.all.filter { |user| user != current_user }
     @book = Book.find(params[:id])
+    @coffee_shops = []
+    @book.catalog_items.each do |item|
+      if Coffee.near([item.latitude, item.longitude], 3)
+        @coffee_shops << [item, Coffee.near([item.latitude, item.longitude], 3)]
+      end
+    end
+    @coffee_shops.filter! { |shop| (current_user.distance_to([shop[1][0].latitude, shop[1][0].longitude]) < 4) && shop[0].user != current_user }
     if params[:ci_id]
       @catalog_item = CatalogItem.find(params[:ci_id])
     end
