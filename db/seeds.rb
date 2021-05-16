@@ -12,7 +12,6 @@ Message.destroy_all
 CatalogItem.destroy_all
 UserReview.destroy_all
 
-
 puts "creating users"
 
 user = User.new(email: 'dg@gmail.com', password: 123456, first_name: "Daniel", address: "13 shimshon, Jerusalem")
