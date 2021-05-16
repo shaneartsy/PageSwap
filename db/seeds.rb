@@ -15,22 +15,22 @@ UserReview.destroy_all
 
 puts "creating users"
 
-user = User.new(email: 'dg@gmail.com', password: 123456, first_name: "Daniel", address: "13 shimshon, Jerusalem")
+user = User.new(email: 'dg@gmail.com', password: 123456, first_name: "Daniel", address: "400 W 2nd St, Austin, TX 78701")
 file_image = URI.open(Faker::Avatar.image)
 user.photo.attach(io: file_image, filename: "nes.png", content_type: 'image/png')
 user.save
 puts "created Daniel"
-user = User.new(email: 'mm@gmail.com', password: 123456, first_name: "Moshe", address: "9 ahad haam, Tel Aviv")
+user = User.new(email: 'mm@gmail.com', password: 123456, first_name: "Moshe", address: "2110 E 21st St, Austin, Texas")
 file_image = URI.open(Faker::Avatar.image)
 user.photo.attach(io: file_image, filename: "nes.png", content_type: 'image/png')
 user.save
 puts "created Moshe"
-user = User.new(email: 'hg@gmail.com', password: 123456, first_name: "Hugo", address: "8 ahad haam, Tel Aviv")
+user = User.new(email: 'hg@gmail.com', password: 123456, first_name: "Hugo", address: "902 Glen Oak Dr, Austin, TX 78745")
 file_image = URI.open(Faker::Avatar.image)
 user.photo.attach(io: file_image, filename: "nes.png", content_type: 'image/png')
 user.save
 puts "created Hugo"
-user = User.new(email: 'sa@gmail.com', password: 123456, first_name: "Shane", address: "44 hakishon, Tel Aviv")
+user = User.new(email: 'sa@gmail.com', password: 123456, first_name: "Shane", address: "2300 Waterloo City Ln, Austin, Texas")
 file_image = URI.open(Faker::Avatar.image)
 user.photo.attach(io: file_image, filename: "nes.png", content_type: 'image/png')
 user.save
@@ -91,7 +91,10 @@ puts "creating catalog items"
 
 quality_arr = ["mint condition", "pretty good", "ok", "slightly ripped", "not great"]
 60.times do
-  CatalogItem.create!(quality: quality_arr.sample, available: rand(1..2) == 1 ? true : false, user: User.all.sample, book: Book.all.sample)
+  user = User.all.sample
+  item = CatalogItem.new(quality: quality_arr.sample, available: rand(1..2) == 1 ? true : false, user: User.all.sample, book: Book.all.sample)
+  item.address = user.address
+  item.save
 end
 
 puts "finished creating catalog items"
