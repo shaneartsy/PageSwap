@@ -23,6 +23,8 @@
 
 #messages {
   margin: 10px;
+  height: 457px;
+  overflow: scroll;
 }
 
 .message-form {
@@ -41,6 +43,10 @@
 
 .message-back {
   position: fixed;
-  top: 50px;
+  top: 75px;
   left: 10px;
+}
+
+.messages-page {
+  margin-top: 50px;
 }
