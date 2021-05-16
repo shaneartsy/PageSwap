@@ -97,21 +97,6 @@ end
 
 puts "finished creating catalog items"
 
-puts "creating chatrooms"
-
-6.times do
-  user1 = User.all.sample
-  user_arr = User.all.filter { |user| user != user1 }
-  user2 = user_arr.sample
-  chatrooms = Chatroom.all.filter { |room| (room.user1 == user1 && room.user2 == room.user2) || (room.user2 == user1 && room.user1 == room.user2) }
-  if chatrooms.length == 0
-    Chatroom.create!(user1: user1, user2: user2)
-  end
-  chatrooms = []
-end
-
-puts "finished creating chatrooms"
-
 puts "creating comments"
 
 50.times do
@@ -121,16 +106,6 @@ puts "creating comments"
 end
 
 puts "finished creating comments"
-
-puts "creating messages"
-
-60.times do
-  Chatroom.all.each do |room|
-    Message.create!(user: rand(1..2) == 1 ? room.user1 : room.user2, chatroom: room, content: Faker::Lorem.paragraph(sentence_count: rand(1..4)))
-  end
-end
-
-puts "finished creating messages"
 
 puts "Creating requests"
 

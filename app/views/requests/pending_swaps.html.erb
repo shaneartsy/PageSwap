@@ -60,7 +60,9 @@
                 <div class='d-flex justify-content-between'>
                   <div class="your-book">
                   <% if request.buyer_item.book.photo.attached? %>
-                    <%= cl_image_tag(request.buyer_item.book.photo.key, crop: :fill, height: 130, width: 82, class: "product-img") %>
+                    <%= link_to book_path(request.buyer_item.book) do %>
+                      <%= cl_image_tag(request.buyer_item.book.photo.key, crop: :fill, height: 130, width: 82, class: "product-img") %>
+                    <% end %>
                   <% end %>
                   <div>
                     <p class="medium-title"><span class="bold">Title:</span> <%= request.buyer_item.book.title %></p>
@@ -80,11 +82,13 @@
                   </div>
                   <div class="d-flex justify-content-end width100">
                     <% if request.seller_item.book.photo.attached? %>
-                      <%= cl_image_tag(request.seller_item.book.photo.key, crop: :fill, height: 130, width: 82, class: "product-img") %>
+                      <%= link_to book_path(request.seller_item.book) do %>
+                        <%= cl_image_tag(request.seller_item.book.photo.key, crop: :fill, height: 130, width: 82, class: "product-img") %>
+                      <% end %>
                     <% end %>
                   </div>
                   <% else %>
-                    <p><%= request.user.first_name %> have not suggested a book from their catalog</p>
+                    <p><%= request.user.first_name %> has not suggested a book from their catalog</p>
                   <% end %>
                 </div>
               </div>
@@ -97,7 +101,7 @@
                   </div>
                   <div class="d-flex justify-content-between mt-2">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <%= f.submit class: "btn btn-secondary" %>
+                    <%= f.submit "Update", class: "btn btn-secondary" %>
                     <% if request.buyer_item.user == current_user %>
                       <%= link_to "Message", user_room_path(request.buyer_item.user), class: "btn btn-secondary" %>
                     <% else %>
