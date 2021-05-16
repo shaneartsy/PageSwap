@@ -1,8 +1,8 @@
-<div data-toggle="modal" data-target="#modal-<%= user.id %>">
+<div data-toggle="modal" data-target="#user-<%= user.id %>">
   <%= cl_image_tag user.photo.key, height: '45px', width: '45px', class: "avatar" %>
 </div>
 
-<div class="modal fade" id="modal-<%= user.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="user-<%= user.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content modal-height">
       <div class="d-flex justify-content-around align-items-center p-2 mt-3">
