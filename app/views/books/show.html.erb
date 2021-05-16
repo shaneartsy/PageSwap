@@ -41,11 +41,16 @@
   <div class="book-header-right">
 
     <ul>
-      <% @users.each do |user| %>
+      <% @coffee_shops.each do |shop| %>
+      <% i = 0 %>
         <li class="distance-list">
-          <%= user.first_name %><br>
-          <span class="small">1.2km</span>
+          <%= render 'shared/profile', user: shop[0].user, item: shop[0] %>
+          <span class="small"><%= current_user.distance_to([shop[1][0].latitude, shop[1][0].longitude]).round(1) %>km</span>
+          <% i += 1 %>
         </li>
+        <% if i == 2 %>
+          <% break %>
+        <% end %>
       <% end %>
     </ul>
 

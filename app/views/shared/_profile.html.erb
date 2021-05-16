@@ -35,8 +35,20 @@
         </div>
       </div>
       <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <%= link_to "Message", user_room_path(user), class: "btn btn-secondary" %>
+        <% if item %>
+          <div>
+            <%= link_to "View #{user.first_name}'s page",  user_catalog_items_path(user), class: "btn btn-secondary" %>
+            <button type="button" class="btn btn-secondary mt-3" data-dismiss="modal">Close</button>
+          </div>
+          <div>
+            <%= link_to "Message", user_room_path(user), class: "btn btn-secondary" %>
+            <%= link_to "Request Swap", new_catalog_item_request_path(item), class: "btn btn-secondary mt-3" %>
+          </div>
+          <% else %>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <%= link_to "#{user.first_name}'s page",  user_catalog_items_path(user), class: "btn btn-secondary" %>
+            <%= link_to "Message", user_room_path(user), class: "btn btn-secondary" %>
+          <% end %>
         </div>
     </div>
   </div>
