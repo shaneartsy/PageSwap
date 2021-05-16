@@ -1,33 +1,49 @@
 <%= render "tabs" %>
 
 <div class="container mt-3">
-  <% if @requests.any? { |request| request.buyer_item.user == current_user } %>
-    <h2>Pending Swaps</h2>
-    <% @requests.each do |request| %>
-      <% if request.buyer_item.user == current_user %>
-        <div class="product-card" data-toggle="modal" data-target="#modal-<%= request.id %>">
-          <div class="product-details">
-            <div class="product-details1-smaller">
-              <p class="small-title"><%= request.buyer_item.user.first_name %></p>
-              <% if request.buyer_item.book.photo.attached? %>
-                <%= cl_image_tag(request.buyer_item.book.photo.key, crop: :fill, height: 80, class: "product-img-smaller") %>
+  <h2>Pending Swaps</h2>
+  <% @requests.each do |request| %>
+    <% if (request.buyer_item.user == current_user) && (request.seller_item) %>
+      <% @other = request.seller_item.user %>
+    <% elsif (request.seller_item) && (request.seller_item.user == current_user) %>
+      <% @other = request.buyer_item.user %>
+    <% else %>
+      <% @other = request.user %>
+    <% end %>
+      <div class="product-card2 d-flex">
+        <div>
+          <%= render 'shared/profile', user: current_user %>
+          <p class="small-title"><%= current_user.first_name %></p>
+        </div>
+        <div class="product-details3" data-toggle="modal" data-target="#modal-<%= request.id %>">
+          <div class="product-details1-smaller2">
+            <% if request.buyer_item.book.photo.attached? %>
+              <%= cl_image_tag(request.buyer_item.book.photo.key, crop: :fill, height: 80, class: "product-img-smaller") %>
+            <% end %>
+            <p class="small-title"><%= request.buyer_item.book.title %></p>
+          </div>
+          <div class="d-flex align-items-center">
+            <%= image_tag("https://image.flaticon.com/icons/png/512/335/335522.png", crop: :fill, height: 15) %>
+          </div>
+          <div class="product-details2-smaller2">
+            <% if request.seller_item %>
+              <p class="small-title"><%= request.seller_item.book.title %></p>
+              <% if request&.seller_item&.book&.photo&.attached? %>
+                <%= cl_image_tag(request.seller_item.book.photo.key, crop: :fill, height: 80, class: "product-img-smaller") %>
               <% end %>
-            </div>
-            <div class="product-details2-smaller">
-              <% if request.seller_item %>
-                <% if request&.seller_item&.book&.photo&.attached? %>
-                  <%= cl_image_tag(request.seller_item.book.photo.key, crop: :fill, height: 80, class: "product-img-smaller") %>
-                <% end %>
-                <p class="small-title"><%= request&.seller_item&.user.first_name %></p>
-              <% else %>
-
-                  <%= image_tag("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6Dw1Etemhe9K_LEK8pXzVO0X2tnqkMW8q4Q&usqp=CAU", crop: :fill, height: 80, class: "product-img-smaller") %>
-
-                <p class="small-title"><%= request.user.first_name %> didnt suggest a book</p>
-              <% end %>
-            </div>
+            <% else %>
+              <p class="small-title">No book reccomended</p>
+              <%= image_tag("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6Dw1Etemhe9K_LEK8pXzVO0X2tnqkMW8q4Q&usqp=CAU", crop: :fill, height: 80, class: "product-img-smaller") %>
+            <% end %>
           </div>
         </div>
+        <div>
+          <% if @other %>
+            <%= render 'shared/profile', user: @other %>
+            <p class="small-title"><%= @other.first_name %></p>
+          <% end %>
+        </div>
+      </div>
 
         <div class="modal fade" id="modal-<%= request.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
@@ -68,13 +84,13 @@
                     <% end %>
                   </div>
                   <% else %>
-                    <p>They have not suggested a book from their catalog</p>
+                    <p><%= request.user.first_name %> have not suggested a book from their catalog</p>
                   <% end %>
                 </div>
               </div>
 
                 <%= simple_form_for(request) do |f| %>
-                  <%= f.input :seller_item, collection: items, label: "To change book from their books" %>
+                  <%= f.input :seller_item, collection: items, label: "To change book from #{request.user.first_name} books" %>
                   <div class="d-flex justify-content-between">
                     <%= link_to "Decline", decline_path(request), class: "btn btn-secondary", method: :patch %>
                     <%= link_to "Accept", accept_path(request), class: "btn btn-secondary", method: :patch  %>
@@ -85,7 +101,7 @@
                     <% if request.buyer_item.user == current_user %>
                       <%= link_to "Message", user_room_path(request.buyer_item.user), class: "btn btn-secondary" %>
                     <% else %>
-                      <%= link_to "Message", user_chatroom_path(request.user), class: "btn btn-secondary" %>
+                      <%= link_to "Message", user_room_path(request.user), class: "btn btn-secondary" %>
                     <% end %>
                   </div>
                 <% end %>
@@ -93,8 +109,5 @@
             </div>
           </div>
         </div>
-
       <% end %>
-    <% end %>
-  <% end %>
-</div>
+  </div>

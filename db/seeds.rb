@@ -136,7 +136,7 @@ puts "Creating requests"
 30.times do
   status_arr = ["pending", "declined"]
   ci1 = CatalogItem.all.sample
-  ci_arr = CatalogItem.all.filter { |item| item != ci1 }
+  ci_arr = CatalogItem.all.filter { |item| (item != ci1) && (item.user != ci1.user) }
   ci2 = rand(1..3) == 1 ? nil : ci_arr.sample
   ci2 ? user = ci2.user : user = User.all.sample
   request = Request.new(user: user, status: status_arr.sample)
@@ -147,7 +147,7 @@ end
 
 20.times do
   ci1 = CatalogItem.all.sample
-  ci_arr = CatalogItem.all.filter { |item| item != ci1 }
+  ci_arr = CatalogItem.all.filter { |item| (item != ci1) && (item.user != ci1.user)}
   ci2 = ci_arr.sample
   request = Request.new(user: ci2.user, status: "accepted")
   request.buyer_item = ci1
@@ -157,7 +157,7 @@ end
 
 20.times do
   ci1 = CatalogItem.all.sample
-  ci_arr = CatalogItem.all.filter { |item| item != ci1 }
+  ci_arr = CatalogItem.all.filter { |item| (item != ci1) && (item.user != ci1.user) }
   ci2 = ci_arr.sample
   request = Request.new(user: ci2.user, status: "completed")
   request.buyer_item = ci1
