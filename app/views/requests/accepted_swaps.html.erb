@@ -7,6 +7,8 @@
       <% @other = request.seller_item.user %>
     <% elsif request.seller_item.user == current_user %>
       <% @other = request.buyer_item.user %>
+    <% else %>
+      <% @other = request.user %>
     <% end %>
       <div class="product-card2 d-flex">
         <div>
@@ -52,7 +54,9 @@
             <div class="modal-body d-flex justify-content-between">
               <div class="your-book">
                 <% if request.buyer_item.book.photo.attached? %>
-                  <%= cl_image_tag(request.buyer_item.book.photo.key, crop: :fill, height: 130, width: 82, class: "product-img") %>
+                  <%= link_to book_path(request.buyer_item.book) do %>
+                    <%= cl_image_tag(request.buyer_item.book.photo.key, crop: :fill, height: 130, width: 82, class: "product-img") %>
+                  <% end %>
                 <% end %>
                 <div>
                   <p class="medium-title"><span class="bold">Title:</span> <%= request.buyer_item.book.title %></p>
@@ -73,7 +77,9 @@
                 </div>
                 <div class="d-flex justify-content-end width100">
                   <% if request&.seller_item&.book&.photo&.attached? %>
-                    <%= cl_image_tag(request&.seller_item&.book&.photo&.key, crop: :fill, height: 130, width: 82, class: "product-img") %>
+                    <%= link_to book_path(request.seller_item.book) do %>
+                      <%= cl_image_tag(request&.seller_item&.book&.photo&.key, crop: :fill, height: 130, width: 82, class: "product-img") %>
+                    <% end %>
                   <% end %>
                 </div>
               </div>
