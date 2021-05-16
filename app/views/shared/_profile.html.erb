@@ -20,6 +20,36 @@
         </div>
 
         <div class="profile-bottom d-flex justify-content-center mt-4">
+          <% if item %>
+            <div class='d-flex justify-content-around'>
+              <div class="your-book">
+              <% if item.book.photo.attached? %>
+                <%= link_to book_path(item.book) do %>
+                  <%= cl_image_tag(item.book.photo.key, crop: :fill, height: 130, width: 82, class: "product-img") %>
+                <% end %>
+              <% end %>
+              <div>
+                <p class="medium-title"><span class="bold">Title:</span> <%= item.book.title %></p>
+                <p class="medium-title"><span class="bold">Author:</span> <%= item.book.author %></p>
+                <p class="medium-title"><span class="bold">Owner:</span> <%= item.user.first_name %></p>
+              </div>
+            </div>
+            <div class="their-book">
+              <h5><%= user.first_name %>'s top books</h5>
+              <ol class="p-0">
+                <% i = 0 %>
+                <% 5.times do %>
+                  <% if user.catalog_items[i] %>
+                    <li><%= link_to user.catalog_items[i].book.title, book_path(user.catalog_items[i].book), class: "profile-link" %> </li>
+                    <% i += 1 %>
+                  <% else %>
+                    <% break %>
+                  <% end %>
+                <% end %>
+              </ol>
+            </div>
+          </div>
+        <% else %>
           <h5><%= user.first_name %>'s top books</h5>
           <ol>
             <% i = 0 %>
@@ -32,17 +62,20 @@
               <% end %>
             <% end %>
           </ol>
+        <% end %>
+
         </div>
       </div>
       <div class="modal-footer">
         <% if item %>
           <div>
-            <%= link_to "View #{user.first_name}'s page",  user_catalog_items_path(user), class: "btn btn-secondary" %>
+            <%= link_to "Request Swap", new_catalog_item_request_path(item), class: "btn btn-secondary" %>
             <button type="button" class="btn btn-secondary mt-3" data-dismiss="modal">Close</button>
           </div>
           <div>
-            <%= link_to "Message", user_room_path(user), class: "btn btn-secondary" %>
-            <%= link_to "Request Swap", new_catalog_item_request_path(item), class: "btn btn-secondary mt-3" %>
+            <%= link_to "#{user.first_name}'s page",  user_catalog_items_path(user), class: "btn btn-secondary" %>
+            <%= link_to "Message", user_room_path(user), class: "btn btn-secondary mt-3" %>
+
           </div>
           <% else %>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
