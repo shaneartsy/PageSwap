@@ -11,6 +11,8 @@ class User < ApplicationRecord
   has_many :comments
   has_many :books, through: :catalog_items
   has_one_attached :photo
+  geocoded_by :address
+  after_validation :geocode, if: :will_save_change_to_address?
 
   include PgSearch::Model
   multisearchable against: [:first_name, :email]

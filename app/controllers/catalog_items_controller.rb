@@ -127,6 +127,7 @@ class CatalogItemsController < ApplicationController
     if params[:catalog_item]
       @item.book = Book.find(params[:catalog_item][:book])
       @item.user = current_user
+      @item.address = current_user.address
       if @item.save
         redirect_to dashboard_path
       else

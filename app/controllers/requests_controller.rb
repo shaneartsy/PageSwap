@@ -58,18 +58,10 @@ class RequestsController < ApplicationController
 
   def accepted_swaps
     @requests = Request.where(status: 'accepted').sort { |a, b| a.buyer_item.book.title <=> b.buyer_item.book.title }
-    @items = []
-    CatalogItem.where(user: current_user).each do |item|
-      @items << [item.book.title, item.id]
-    end
   end
 
   def declined_swaps
     @requests = Request.where(status: 'declined').sort { |a, b| a.buyer_item.book.title <=> b.buyer_item.book.title }
-    @items = []
-    CatalogItem.where(user: current_user).each do |item|
-      @items << [item.book.title, item.id]
-    end
   end
 
   def destroy
