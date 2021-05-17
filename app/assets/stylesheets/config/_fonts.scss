@@ -14,3 +14,28 @@ $headers-font: "Nunito", "Helvetica", "sans-serif";
 //        font-url('FontFile.ttf') format('truetype')
 // }
 // $my-font: "Font Name";
+
+$RGMed: "Right Grotesk Medium";
+@font-face {
+  font-family: $RGMed;
+  src: url('RightGrotesk-Medium.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+$RGSBlack: "Right Grotesk Spatial Black";
+@font-face {
+  font-family: $RGSBlack;
+  src: url('RightGrotesk-SpatialBlack.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+$Souvenir: "Souvenir STD Light";
+@font-face {
+  font-family: $Souvenir;
+  src: url('SouvenirStd-Light.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
