@@ -30,3 +30,7 @@
   border: none;
   width: 26px;
 }
+
+.search-form form button:focus {
+  outline: none;
+}
