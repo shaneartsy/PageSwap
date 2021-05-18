@@ -1,7 +1,6 @@
 <div class="background">
   <div class="d-flex align-items-center flex-column">
-    <h1>PageSwap</h1>
-    <p>Read, Swap, Repeat.</p>
+    <h1 class="home-header mt-4 mb-4">Read, Swap, Repeat.</h1>
 
   <%= form_tag root_path, method: :get, html: { autocomplete: "off" } do %>
     <%= text_field_tag :query,
@@ -10,7 +9,7 @@
       class: "form-control",
       placeholder: "Find a book or user"
     %>
-    <%= submit_tag "Search", class: "btn btn-primary" %>
+    <%= submit_tag "Search", class: "btn btn-primary justify-center" %>
   <% end %>
 </div>
 <% if @results != nil %>

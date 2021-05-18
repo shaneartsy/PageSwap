@@ -1,7 +1,20 @@
 .form-login {
-    padding: 10px 20px;
-    background: #E6FFEA;
-    margin-top: 20px;
-    border-radius: 5px;
-    box-shadow: 2px 2px 3px rgba(0,0,0,0.1);
+  padding: 10px 20px;
+  background: #E6FFEA;
+  margin-top: 20px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 3px rgba(0,0,0,0.1);
+  label {
+    margin-top: 5px;
+    margin-bottom: -1px;
+  }
+  .btn {
+    width: 100%;
+    margin-top: -10px;
+    margin-bottom: 15px;
+  }
+  a {
+    color: #F07257;
+    align: center;
+  }
 }

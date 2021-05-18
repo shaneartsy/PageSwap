@@ -28,3 +28,29 @@ body {
   font-weight: bold;
   color: green;
 }
+
+.nav-header {
+  font-family: $RGSBlack;
+  font-style: normal;
+  font-size: 26px;
+  color: #000000;
+  // line-height: 20px;
+  // line-height: 67%;
+  align: Center;
+  // vertical-align: Top;
+  opacity: 100%;
+  // margin-left: 5px;
+}
+
+.home-header {
+  font-family: $RGMed;
+  font-style: bold;
+  font-size: 22px;
+  color: #F07257;
+  // line-height: 20px;
+  // line-height: 67%;
+  align: Center;
+  // vertical-align: Top;
+  opacity: 100%;
+  // margin-left: 5px;
+}
