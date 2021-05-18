@@ -67,6 +67,11 @@ class RequestsController < ApplicationController
     @requests.reverse!
   end
 
+  def past_swaps
+    @requests = Request.where(status: 'completed').sort_by { |request| request.updated_at }
+    @requests.reverse!
+  end
+
   def destroy
     request = Request.find(params[:id])
     request.delete

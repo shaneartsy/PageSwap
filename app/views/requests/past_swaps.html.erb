@@ -1,7 +1,8 @@
 <%= render "tabs" %>
 
+
 <div class="container mt-3">
-  <h2>Pending Swaps</h2>
+  <h2>Past Swaps</h2>
   <% @requests.each do |request| %>
     <% if (request.buyer_item.user == current_user) && (request.seller_item) %>
       <% @other = request.seller_item.user %>
@@ -41,26 +42,19 @@
           </div>
         </div>
         <div>
-          <% if @other %>
-            <%= render 'shared/profile', user: @other, item: nil %>
-            <p class="small-title"><%= @other.first_name %></p>
-          <% end %>
+          <%= render 'shared/profile', user: @other, item: nil %>
+          <p class="small-title"><%= @other.first_name %></p>
         </div>
       </div>
 
-        <div class="modal fade" id="modal-<%= request.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="d-flex justify-content-center mt-3">
-                <h5 class="modal-title" id="exampleModalLabel">Trade <%= request.user.first_name %> wants</h5>
-              </div>
-
-              <% items = [] %>
-              <% request.user.catalog_items.each do |item| %>
-                <% items << [item.book.title, item.id] %>
-              <% end %>
-              <div class="modal-body mt-2">
-                <div class='d-flex justify-content-between'>
+      <div class="modal fade" id="modal-<%= request.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="d-flex justify-content-center mt-3">
+              <h5 class="modal-title" id="exampleModalLabel">Requested Trade</h5>
+            </div>
+            <div class="modal-body">
+              <div class='d-flex justify-content-between'>
                   <div class="your-book">
                   <% if request.buyer_item.book.photo.attached? %>
                     <%= link_to book_path(request.buyer_item.book) do %>
@@ -98,27 +92,13 @@
                   <% end %>
                 </div>
               </div>
-
-                <%= simple_form_for(request) do |f| %>
-                  <%= f.input :seller_item, collection: items, label: "To change book from #{request.user.first_name} books" %>
-                  <div class="d-flex mt-2 justify-content-between">
-                    <%= link_to "Decline", decline_path(request), class: "btn btn-secondary", method: :patch %>
-                    <%= link_to "Delete", request_path(request), class: "btn-secondary btn", method: :delete %>
-                    <%= link_to "Accept", accept_path(request), class: "btn btn-secondary", method: :patch  %>
-                  </div>
-                  <div class="d-flex justify-content-between mt-2">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <%= f.submit "Update", class: "btn btn-secondary" %>
-                    <% if request.buyer_item.user == current_user %>
-                      <%= link_to "Message", user_room_path(request.buyer_item.user), class: "btn btn-secondary" %>
-                    <% else %>
-                      <%= link_to "Message", user_room_path(request.user), class: "btn btn-secondary" %>
-                    <% end %>
-                  </div>
-                <% end %>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <%= link_to "Delete", request_path(request), method: :delete, class: "btn btn-secondary" %>
               </div>
             </div>
           </div>
         </div>
-      <% end %>
-  </div>
+      </div>
+  <% end %>
+</div>
