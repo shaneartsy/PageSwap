@@ -27,11 +27,9 @@ import "bootstrap";
 
 // Internal imports, e.g:
 import { bindingBooks } from './binding_books.js';
+import { initMapbox } from '../plugins/init_mapbox';
 
 document.addEventListener('turbolinks:load', () => {
   bindingBooks()
-
-
-  // Call your functions here, e.g:
-  // initSelect2();
+  initMapbox()
 });

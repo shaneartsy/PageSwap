@@ -10,11 +10,13 @@
   display: flex;
   align-items: center;
   height: 85px;
-  margin: 10px;
+  margin: 10px auto;
+  border-radius: 5px;
+  background-color: white;
 }
 
 .width100p {
-  width: 150px;
+  width: 100px;
   margin: 0;
   display: flex;
   justify-content: space-around;
@@ -25,6 +27,8 @@
   margin: 10px;
   height: 457px;
   overflow: scroll;
+  position: fixed;
+  width: 100%;
 }
 
 .message-form {
@@ -49,4 +53,14 @@
 
 .messages-page {
   margin-top: 50px;
+}
+
+.chat-index {
+  color: black;
+}
+
+.index-name {
+  width: 237.5px;
+  justify-content: center;
+  display: flex;
 }

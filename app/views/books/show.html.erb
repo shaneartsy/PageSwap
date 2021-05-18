@@ -13,9 +13,9 @@
     </div>
     <div class="book-header-left-bottom">
       <div class="d-flex justify-content-center mt-2">
-        <h4 class="btn btn-primary" data-toggle="modal" data-target="#modal-<%= @book.id %>">Add to bookshelf</h4>
+        <h4 class="btn btn-primary" data-toggle="modal" data-target="#book-<%= @book.id %>">Add to bookshelf</h4>
       </div>
-      <div class="modal fade" id="modal-<%= @book.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal fade" id="book-<%= @book.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content modal-height">
             <div class="d-flex justify-content-center mt-3">
@@ -38,17 +38,25 @@
       </div>
     </div>
   </div>
-  <div class="book-header-right">
-
+  <div class="book-header-right p-1">
+    <% if @coffee_shops.empty? %>
+      <h4 class="your-area">No users with this book in your area</h4>
+    <% else %>
+      <h4 class="your-area">Users with this book in your area</h4>
+    <% end %>
     <ul>
-      <% @users.each do |user| %>
+      <% @coffee_shops.each do |shop| %>
+      <% i = 0 %>
         <li class="distance-list">
-          <%= user.first_name %><br>
-          <span class="small">1.2km</span>
+          <%= render 'shared/profile', user: shop[0].user, item: shop[0] %>
+          <span class="small"><%= current_user.distance_to([shop[1][0].latitude, shop[1][0].longitude]).round(1) %>km</span>
+          <% i += 1 %>
         </li>
+        <% if i == 2 %>
+          <% break %>
+        <% end %>
       <% end %>
     </ul>
-
   </div>
 </div>
 <div class="reviews">

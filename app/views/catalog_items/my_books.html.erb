@@ -34,12 +34,12 @@
             <div class="d-flex justify-content-center mt-3">
               <h5 class="modal-title" id="exampleModalLabel"><%= item.book.title %></h5>
             </div>
-            <div class="modal-body mt-2 center">
+            <div class="modal-body mt-2 center p-3 d-flex flex-column align-items-center">
               <%= link_to book_path(item.book) do %>
                 <%= cl_image_tag(item.book.photo.key, crop: :fill, height: 150, class: "product-img") %>
               <% end %>
 
-              <p>Title: <%= item.book.title %></p>
+              <p class="text-center">Title: <%= item.book.title %></p>
               <p>Author: <%= item.book.author %></p>
               <% if item.available %>
                 <p>Available</p>
