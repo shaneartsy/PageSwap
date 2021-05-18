@@ -39,3 +39,11 @@ $Souvenir: "Souvenir STD Light";
   font-weight: normal;
   font-style: normal;
 }
+
+$Raisonne: "Raisonne Demi-Bold";
+@font-face {
+  font-family: $Raisonne;
+  src: url('Raisonne-DemiBold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
