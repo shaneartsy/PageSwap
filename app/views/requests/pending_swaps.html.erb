@@ -3,13 +3,7 @@
 <div class="container mt-3">
   <h2>Pending Swaps</h2>
   <% @requests.each do |request| %>
-    <% if (request.buyer_item.user == current_user) && (request.seller_item) %>
-      <% @other = request.seller_item.user %>
-    <% elsif (request.seller_item) && (request.seller_item.user == current_user) %>
-      <% @other = request.buyer_item.user %>
-    <% else %>
-      <% @other = request.user %>
-    <% end %>
+    <% if request.buyer_item.user == current_user %>
       <div class="product-card2 d-flex">
         <div>
           <%= render 'shared/profile', user: current_user, item: nil %>
@@ -41,9 +35,9 @@
           </div>
         </div>
         <div>
-          <% if @other %>
-            <%= render 'shared/profile', user: @other, item: nil %>
-            <p class="small-title"><%= @other.first_name %></p>
+          <% if request.user %>
+            <%= render 'shared/profile', user: request.user, item: nil %>
+            <p class="small-title"><%= request.user.first_name %></p>
           <% end %>
         </div>
       </div>
@@ -52,13 +46,15 @@
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="d-flex justify-content-center mt-3">
-                <h5 class="modal-title" id="exampleModalLabel">Trade <%= request.user.first_name %> wants</h5>
+                <% request.seller_item ? header = "Trade #{request.user.first_name} wants" : header = "Book #{request.user.first_name} wants" %>
+                <h5 class="modal-title" id="exampleModalLabel"><%= header %></h5>
               </div>
 
               <% items = [] %>
               <% request.user.catalog_items.each do |item| %>
                 <% items << [item.book.title, item.id] %>
               <% end %>
+              <% if request.seller_item %>
               <div class="modal-body mt-2">
                 <div class='d-flex justify-content-between'>
                   <div class="your-book">
@@ -80,7 +76,6 @@
                   <% end %>
                 </div>
                 <div class="their-book">
-                  <% if request.seller_item %>
                   <div>
                     <p class="medium-title"><span class="bold">Title:</span> <%= request.seller_item.book.title %></p>
                     <p class="medium-title"><span class="bold">Author:</span> <%= request.seller_item.book.author %></p>
@@ -93,14 +88,24 @@
                       <% end %>
                     <% end %>
                   </div>
-                  <% else %>
-                    <p><%= request.user.first_name %> has not suggested a book from their catalog</p>
-                  <% end %>
                 </div>
               </div>
+              <% else %>
+                <div class="modal-body mt-2 center p-3 d-flex flex-column align-items-center">
+                  <%= link_to book_path(request.buyer_item.book) do %>
+                    <%= cl_image_tag(request.buyer_item.book.photo.key, crop: :fill, height: 150, class: "product-img") %>
+                  <% end %>
+                  <p class="text-center">Title: <%= request.buyer_item.book.title %></p>
+                  <p>Author: <%= request.buyer_item.book.author %></p>
+                  <% if request.buyer_item.available %>
+                    <p>Available</p>
+                  <% else %>
+                    <p>Unavailable</p>
+                  <% end %>
+              <% end %>
 
                 <%= simple_form_for(request) do |f| %>
-                  <%= f.input :seller_item, collection: items, label: "To change book from #{request.user.first_name} books" %>
+                  <%= f.input :seller_item, collection: items, label: request.seller_item ? "To change the book from #{request.user.first_name}'s' bookshelf" : "To pick a book from #{request.user.first_name}'s' bookshelf" %>
                   <div class="d-flex mt-2 justify-content-between">
                     <%= link_to "Decline", decline_path(request), class: "btn btn-secondary", method: :patch %>
                     <%= link_to "Delete", request_path(request), class: "btn-secondary btn", method: :delete %>
@@ -121,4 +126,5 @@
           </div>
         </div>
       <% end %>
+    <% end %>
   </div>
