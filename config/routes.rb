@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get 'requests/pending_swaps', to: 'requests#pending_swaps', as: 'pending_swaps'
   get 'requests/accepted_swaps', to: 'requests#accepted_swaps', as: 'accepted_swaps'
   get 'requests/declined_swaps', to: 'requests#declined_swaps', as: 'declined_swaps'
+  get 'requests/past_swaps', to: 'requests#past_swaps', as: 'past_swaps'
   get 'catalog_items/my_books', to: 'catalog_items#my_books', as: 'my_books'
   patch 'catalog_items/:id/make_mint', to: 'catalog_items#make_mint', as: 'make_mint'
   patch 'catalog_items/:id/make_near_mint', to: 'catalog_items#make_near_mint', as: 'make_near_mint'
