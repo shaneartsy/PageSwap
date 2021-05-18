@@ -30,6 +30,7 @@
   overflow: scroll;
   position: fixed;
   width: 100%;
+  margin-top: 50px;
 }
 
 .form-group {
@@ -39,7 +40,12 @@
 .message-form {
   position: fixed;
   width: 100%;
-  bottom: 20px;
+  display: flex;
+  align-items: center;
+  height: 72px;
+  bottom: 0;
+  justify-content: space-around;
+  background-color: #F4F4F4;
 }
 
 .send-button {
@@ -53,6 +59,7 @@
   height: 35px;
   border-radius: 7px;
   width: 250px;
+  margin-right: 20px;
 }
 
 .message-back {
