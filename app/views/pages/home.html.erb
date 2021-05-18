@@ -1,6 +1,6 @@
 <div class="background">
   <div class="d-flex align-items-center flex-column">
-    <h1>PageSwap</h1>
+    <h1 class="app-title">PageSwap</h1>
     <p>Read, Swap, Repeat.</p>
 
   <%= form_tag root_path, method: :get, html: { autocomplete: "off" } do %>
@@ -58,10 +58,5 @@
       <% end %>
     <% end %>
   <% end %>
-  <div id="map"
-     style="width: 75%; height: 450px;"
-     data-markers="<%= @markers.to_json %>"
-     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
-  </div>
 </div>
 
