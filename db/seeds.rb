@@ -115,7 +115,7 @@ puts "Creating requests"
   ci1 = CatalogItem.all.sample
   ci_arr = CatalogItem.all.filter { |item| (item != ci1) && (item.user != ci1.user) }
   ci2 = rand(1..3) == 1 ? nil : ci_arr.sample
-  ci2 ? user = ci2.user : user = User.all.sample
+  ci2 ? user = ci2.user : user = (User.all.filter { |user| user != ci1.user }).sample
   request = Request.new(user: user, status: status_arr.sample)
   request.buyer_item = ci1
   request.seller_item = ci2
