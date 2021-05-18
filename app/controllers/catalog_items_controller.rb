@@ -119,7 +119,8 @@ class CatalogItemsController < ApplicationController
 
   def my_books
     items = CatalogItem.where(user: current_user)
-    @items = items.sort { |a, b| a.book.title <=> b.book.title }
+    @items = items.sort_by { |item| item.updated_at }
+    @items.reverse!
   end
 
   def create
