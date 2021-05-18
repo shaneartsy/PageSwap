@@ -5,6 +5,8 @@ class PagesController < ApplicationController
 
   def home
     @users = User.all
+    @requests = Request.all.sort_by { |request| request.updated_at }
+    @requests.reverse!
     @items = CatalogItem.all
     @markers = @items.geocoded.map do |item|
       {
