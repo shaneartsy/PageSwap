@@ -1,17 +1,19 @@
 <div class="background">
-  <div class="d-flex align-items-center flex-column">
+  <div class="d-flex align-items-center flex-column search-form">
     <h1 class="home-header mt-4 mb-4">Read, Swap, Repeat.</h1>
 
-  <%= form_tag root_path, method: :get, html: { autocomplete: "off" } do %>
-    <%= text_field_tag :query,
-      params[:query],
-      autocomplete: 'off',
-      class: "form-control",
-      placeholder: "Find a book or user"
-    %>
-    <%= submit_tag "Search", class: "btn btn-search" %>
-  <% end %>
-</div>
+    <%= form_tag root_path, method: :get, html: { autocomplete: "off" } do %>
+      <%= text_field_tag :query,
+        params[:query],
+        autocomplete: 'off',
+        input_html: { class: "form-control" },
+        placeholder: "Find a book or user"
+      %>
+      <%= button_tag type: "submit", class: "btn-search" do %>
+        <i class="fas fa-search"></i>
+      <% end %>
+    <% end %>
+  </div>
 <% if @results != nil %>
   <% @results.each do |result| %>
     <% if result.class.name == "Book" %>

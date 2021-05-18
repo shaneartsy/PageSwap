@@ -1,0 +1,32 @@
+.form-control {
+
+}
+
+.search-form input {
+  border: none;
+}
+
+.search-form input:focus {
+  outline: none;
+}
+
+.search-form form {
+  display: flex;
+  border: solid  1px rgb(133, 133, 133);
+  align-items: center;
+  border-radius: 6px;
+  width: 250px;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.btn-search {
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  color: #777777;
+  border-radius: 6px;
+  background-color: white;
+  border: none;
+  width: 26px;
+}
