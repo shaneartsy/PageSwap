@@ -72,6 +72,31 @@ class RequestsController < ApplicationController
     @requests.reverse!
   end
 
+  def my_accepted_swaps
+    @requests = Request.where(status: 'accepted', user: current_user).sort_by { |request| request.updated_at }
+    @requests.reverse!
+  end
+
+  def my_pending_swaps
+    @requests = Request.where(status: 'pending', user: current_user).sort_by { |request| request.updated_at }
+    @requests.reverse!
+    @items = []
+    catalog = current_user.catalog_items.filter { |item| item.available == true }
+    catalog.each do |item|
+      @items << [item.book.title, item.id]
+    end
+  end
+
+  def my_declined_swaps
+    @requests = Request.where(status: 'declined', user: current_user).sort_by { |request| request.updated_at }
+    @requests.reverse!
+  end
+
+  def my_past_swaps
+    @requests = Request.where(status: 'completed', user: current_user).sort_by { |request| request.updated_at }
+    @requests.reverse!
+  end
+
   def destroy
     request = Request.find(params[:id])
     request.delete

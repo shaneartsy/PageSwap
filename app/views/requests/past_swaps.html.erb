@@ -4,6 +4,7 @@
 <div class="container mt-3">
   <h2>Past Swaps</h2>
   <% @requests.each do |request| %>
+    <% if request.seller_item.user == current_user %>
       <div class="product-card2 d-flex">
         <div>
           <%= render 'shared/profile', user: current_user, item: nil %>
@@ -95,5 +96,6 @@
           </div>
         </div>
       </div>
+    <% end %>
   <% end %>
 </div>
