@@ -2,11 +2,11 @@
   <!-- <%= link_to "About Us", pages_about_us_path, class: "btn-footer" %> -->
   <!-- <%= link_to "FAQ", pages_faq_path, class: "btn-footer" %> -->
 
-  <a href="/" class="footer-nav-link <%= 'footer-nav-link--active' if current_page?(controller: 'pages', action: 'home') %>">
+  <a href="/" class="footer-nav-link <%= 'footer-nav-link--active' if user_signed_in? && current_page?(controller: 'pages', action: 'home') %>">
     <i class="material-icons-round nav__icon">home</i>
     <span class="nav__text">Home</span>
   </a>
-  <a href="/catalog_items/my_books" class="footer-nav-link <%= 'footer-nav-link--active' if current_page?(controller: 'catalog_items', action: 'my_books') %>">
+  <a href="/catalog_items/my_books" class="footer-nav-link <%= 'footer-nav-link--active' if user_signed_in? && current_page?(controller: 'catalog_items', action: 'my_books') %>">
     <i class="material-icons-round nav__icon">library_books</i>
     <span class="nav__text">Dashboard</span>
   </a>
@@ -14,7 +14,7 @@
     <i class="material-icons-round nav__icon">face</i>
     <span class="nav__text">Profile</span>
   </a>
-  <a href="/chatrooms" class="footer-nav-link <%= 'footer-nav-link--active' if current_page?(controller: 'chatrooms', action: 'index') %>">
+  <a href="/chatrooms" class="footer-nav-link <%= 'footer-nav-link--active' if user_signed_in? && current_page?(controller: 'chatrooms', action: 'index') %>">
     <i class="material-icons-round nav__icon">chat</i>
     <span class="nav__text">Messages</span>
   </a>
