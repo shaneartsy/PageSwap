@@ -28,7 +28,3 @@ class User < ApplicationRecord
     ratings_devied = ratings_sum / ratings.count
   end
 end
-
-
-
-

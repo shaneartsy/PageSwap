@@ -10,7 +10,8 @@
 }
 
 .book-header-left {
-  box-shadow: 1px 1px 1px rgba(40,40,40,.2);
+  box-shadow: 1px 1px 2px rgba(40,40,40,.2);
+  border-radius: 5px;
   width: 75%;
   padding: 5px;
 }
@@ -23,6 +24,13 @@
 
 .book-header-right {
   width: 25%;
+}
+
+.your-area {
+  font-size: 14px;
+  text-align: center;
+  font-weight: bold;
+  color: #EF7258;
 }
 
 .book-header-right ul {
@@ -44,15 +52,22 @@
 }
 
 .book-info {
-  justify-content: center;
-  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   padding: 10px 3px;
 }
 
 .book-info p {
   font-size: 10px;
   padding-left: 8px;
-  margin-bottom: 7px;
+  margin: 0;
+  padding: 0 0 0 8px;
+
+}
+
+.book-info .bigger {
+  font-size: 13px;
 }
 
 .small {
@@ -73,6 +88,8 @@
 
 .rating-input{
   margin-top: 6px;
+  background-color: white;
+  width: 80px;
 }
 
 .reviews p {
@@ -82,4 +99,23 @@
 .flex {
   display: flex;
   justify-content: space-between;
+}
+
+.review-input {
+  background-color: white;
+}
+
+.book_review_rating label {
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+.review-btn {
+  background-color: #25DD87;
+  color: white;
+  height: 38px;
+}
+
+.form-grouping div {
+  width: 244px;
 }

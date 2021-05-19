@@ -29,6 +29,7 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
+  config.hosts << "ea59b256c742.ngrok.io"
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :cloudinary
 
@@ -60,6 +61,4 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
-
-  config.hosts << "7bfd5e5b060e.ngrok.io"
 end
