@@ -2,7 +2,7 @@
   <div class="d-flex align-items-center flex-column search-form">
     <h1 class="home-header mt-4 mb-4">Read, Swap, Repeat.</h1>
 
-    <%= form_tag root_path, method: :get, html: { autocomplete: "off" } do %>
+    <%= form_tag root_path, method: :get, html: { autocomplete: "off" }, class: "search-bar" do %>
       <%= text_field_tag :query,
         params[:query],
         autocomplete: 'off',
