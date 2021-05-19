@@ -40,10 +40,22 @@ body {
 }
 
 .home-header {
-  font-family: $RGMed;
+  font-family: $Raisonne;
   font-style: bold;
-  font-size: 24px;
+  font-size: 32px;
   color: #F07257;
+  // line-height: 20px;
+  // line-height: 67%;
+  align: Center;
+  // vertical-align: Top;
+  opacity: 100%;
+  // margin-left: 5px;
+}
+
+.home-text {
+  font-family: $Raisonne;
+  font-size: 24px;
+  color: #3b3b3b;
   // line-height: 20px;
   // line-height: 67%;
   align: Center;
