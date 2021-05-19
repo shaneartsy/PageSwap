@@ -1,16 +1,35 @@
 .form-control {
-
+  background-color: #F4F4F4;
 }
 
 .search-form input {
   border: none;
 }
 
+.search-form2 form.search-bar input {
+  border: none;
+  background-color: #F4F4F4;
+}
+
 .search-form input:focus {
   outline: none;
 }
 
-.search-form form {
+.search-form2 form.search-bar input:focus {
+  outline: none;
+}
+
+.search-form form.search-bar {
+  display: flex;
+  border: solid  1px rgb(133, 133, 133);
+  align-items: center;
+  border-radius: 6px;
+  width: 250px;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.search-form2 form.search-bar {
   display: flex;
   border: solid  1px rgb(133, 133, 133);
   align-items: center;
@@ -31,6 +50,25 @@
   width: 26px;
 }
 
-.search-form form button:focus {
+.btn-search2 {
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  color: #777777;
+  border-radius: 8px;
+  background-color: #F4F4F4;
+  border: none;
+  width: 26px;
+}
+
+.search-form form.search-bar button:focus {
   outline: none;
+}
+
+.search-form2 form.search-bar button:focus {
+  outline: none;
+}
+
+.catalog-form form {
+  width: 250px;
 }
