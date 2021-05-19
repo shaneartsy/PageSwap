@@ -1,9 +1,9 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon z">
   <div class="ml-1 d-flex align-items-center">
     <%= link_to root_path do %>
-      <%= image_tag "PS_icon-01.png", height: '60px', width: '60px' %>
+      <%= image_tag "PS_nav_logo.png", height: '48px', width: '48px' %>
     <% end %>
-  <h1 class="nav-header mr-1">PageSwap</h1>
+  <h1 class="nav-header ml-1">PageSwap</h1>
 </div>
   <% if user_signed_in? && current_user.photo.attached? %>
     <%= cl_image_tag current_user.photo.key, height: '50px', width: '50px', class: "dropdown-toggle avatar", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
