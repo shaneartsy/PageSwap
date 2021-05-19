@@ -19,7 +19,7 @@
       </div>
       <div class="modal fade" id="book-<%= @book.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-          <div class="modal-content modal-height">
+          <div class="modal-content p-3 modal-height">
             <div class="d-flex justify-content-center mt-3">
               <h5 class="modal-title" id="exampleModalLabel">Add <%= @book.title %> to my bookshelf</h5>
             </div>
@@ -28,12 +28,12 @@
                 <%= f.input :quality %>
                 <%= f.input :book, as: :hidden, required: true, autofocus: true, input_html: { :value => @book.id.to_s } %>
                 <%= f.input :available, as: :radio_buttons, label: "Mark as available" %>
-                <%= f.submit "Add to bookshelf", class: "btn-success btn-br" %>
-              <% end %>
+
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <div></div>
+                <%= f.submit "Add to bookshelf", class: "btn-secondary btn" %>
+              <% end %>
             </div>
           </div>
         </div>
