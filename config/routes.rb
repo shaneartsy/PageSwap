@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :requests, only: [:destroy, :update]
   get 'pages/about_us', to: 'pages#about_us'
   get 'pages/faq', to: 'pages#faq'
+  get 'pages/error', to: 'pages#error'
   get 'requests/dashboard', to: 'requests#dashboard', as: 'dashboard'
   get 'requests/pending_swaps', to: 'requests#pending_swaps', as: 'pending_swaps'
   get 'requests/accepted_swaps', to: 'requests#accepted_swaps', as: 'accepted_swaps'
