@@ -2,6 +2,7 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+  margin-bottom: 60px;
 }
 
 .faq-banner {
@@ -35,7 +36,8 @@
 .question {
   // font-family: "Work Sans";
   font-size: 20px;
-  color: #545454
+  color: #545454;
+  padding-right: 15px;
 }
 
 .answer-container {
@@ -45,9 +47,15 @@
 .answer {
   // font-family: "Work Sans";
   font-size: 20px;
-  color: #b6b6b6
+  color: #b6b6b6;
+  padding-right: 15px;
 }
 
 #faq-container-bottom {
   border-bottom: 4px solid #E8E8E8;
+}
+
+.tiny {
+  font-size: 10px;
+  color: green;
 }
