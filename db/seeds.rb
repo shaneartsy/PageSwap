@@ -15,22 +15,22 @@ UserReview.destroy_all
 puts "creating users"
 
 user = User.new(email: 'dg@gmail.com', password: 123456, first_name: "Daniel", address: "400 W 2nd St, Austin, TX 78701")
-file_image = URI.open(Faker::Avatar.image)
+file_image = URI.open("https://kitt.lewagon.com/placeholder/users/random")
 user.photo.attach(io: file_image, filename: "nes.png", content_type: 'image/png')
 user.save
 puts "created Daniel"
 user = User.new(email: 'mm@gmail.com', password: 123456, first_name: "Moshe", address: "2110 E 21st St, Austin, Texas")
-file_image = URI.open(Faker::Avatar.image)
+file_image = URI.open("https://kitt.lewagon.com/placeholder/users/random")
 user.photo.attach(io: file_image, filename: "nes.png", content_type: 'image/png')
 user.save
 puts "created Moshe"
 user = User.new(email: 'hg@gmail.com', password: 123456, first_name: "Hugo", address: "902 Glen Oak Dr, Austin, TX 78745")
-file_image = URI.open(Faker::Avatar.image)
+file_image = URI.open("https://kitt.lewagon.com/placeholder/users/random")
 user.photo.attach(io: file_image, filename: "nes.png", content_type: 'image/png')
 user.save
 puts "created Hugo"
 user = User.new(email: 'sa@gmail.com', password: 123456, first_name: "Shane", address: "2300 Waterloo City Ln, Austin, Texas")
-file_image = URI.open(Faker::Avatar.image)
+file_image = URI.open("https://kitt.lewagon.com/placeholder/users/random")
 user.photo.attach(io: file_image, filename: "nes.png", content_type: 'image/png')
 user.save
 puts "created Shane"
@@ -41,10 +41,10 @@ puts "creating book seeds"
   puts "parsing API"
   fake_book = Faker::Book.title
   puts fake_book
-  if (Book.all.any? { |book| book.title == fake_book }) || (!(file = URI.open("https://www.googleapis.com/books/v1/volumes?q=#{fake_book}").read))
+  if (Book.all.any? { |book| book.title == fake_book }) || (!(file = URI.open("https://www.googleapis.com/books/v1/volumes?q=#{CGI::escape(fake_book)}").read))
     next
   else
-    file = URI.open("https://www.googleapis.com/books/v1/volumes?q=#{fake_book}").read
+    file = URI.open("https://www.googleapis.com/books/v1/volumes?q=#{CGI::escape(fake_book)}").read
     book_response = JSON.parse(file)
     book = book_response['items'].first['volumeInfo']
     title = fake_book
@@ -115,7 +115,7 @@ puts "Creating requests"
   ci1 = CatalogItem.all.sample
   ci_arr = CatalogItem.all.filter { |item| (item != ci1) && (item.user != ci1.user) }
   ci2 = rand(1..3) == 1 ? nil : ci_arr.sample
-  ci2 ? user = ci2.user : user = User.all.sample
+  ci2 ? user = ci2.user : user = (User.all.filter { |user| user != ci1.user }).sample
   request = Request.new(user: user, status: status_arr.sample)
   request.buyer_item = ci1
   request.seller_item = ci2
