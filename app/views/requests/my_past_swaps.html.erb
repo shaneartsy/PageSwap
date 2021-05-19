@@ -1,0 +1,102 @@
+<%= render "tabs" %>
+
+
+<div class="container mt-3">
+  <h2>My Past Swaps</h2>
+  <% @requests.each do |request| %>
+    <div class="product-card2 d-flex">
+      <div>
+        <%= render 'shared/profile', user: current_user, item: nil %>
+        <p class="small-title"><%= current_user.first_name %></p>
+      </div>
+      <div class="product-details3" data-toggle="modal" data-target="#modal-<%= request.id %>">
+        <div class="product-details1-smaller2">
+          <% if request.seller_item %>
+            <p class="small-title"><%= request.seller_item.book.title %></p>
+            <% if request&.seller_item&.book&.photo&.attached? %>
+              <%= cl_image_tag(request.seller_item.book.photo.key, crop: :fill, height: 80, class: "product-img-smaller") %>
+            <% end %>
+          <% else %>
+            <p class="small-title">No book</p>
+            <%= image_tag("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6Dw1Etemhe9K_LEK8pXzVO0X2tnqkMW8q4Q&usqp=CAU", crop: :fill, height: 80, class: "product-img-smaller") %>
+          <% end %>
+        </div>
+
+        <div class="d-flex justify-content-center align-items-center flex-column">
+          <% if request.seller_item %>
+            <p class="small-title"><%= request.buyer_item.distance_to(request.seller_item).round(1) %>km</p>
+          <% end %>
+          <%= image_tag("https://image.flaticon.com/icons/png/512/335/335522.png", crop: :fill, height: 15, width: 15) %>
+        </div>
+
+        <div class="product-details2-smaller2">
+          <% if request.buyer_item.book.photo.attached? %>
+            <%= cl_image_tag(request.buyer_item.book.photo.key, crop: :fill, height: 80, class: "product-img-smaller") %>
+          <% end %>
+          <p class="small-title"><%= request.buyer_item.book.title %></p>
+        </div>
+
+      </div>
+      <div>
+        <%= render 'shared/profile', user: request.buyer_item.user, item: nil %>
+        <p class="small-title"><%= request.buyer_item.user.first_name %></p>
+      </div>
+    </div>
+
+    <div class="modal fade" id="modal-<%= request.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="d-flex justify-content-center mt-3">
+            <% hour = (DateTime.now.hour - 3) - request.updated_at.hour %>
+            <% (DateTime.now.month == request.updated_at.month && DateTime.now.day == request.updated_at.day) ? (hour == 0 ? now = "Completed now" : now = "Completed #{hour}hr#{hour == 1 ? "" : "s"} ago") : now = request.updated_at.strftime("Completed on %m/%d/%Y") %>
+            <h5 class="modal-title" id="exampleModalLabel"><%= now %></h5>
+          </div>
+          <div class="modal-body">
+            <div class='d-flex justify-content-between'>
+                <div class="your-book">
+                <% if request.buyer_item.book.photo.attached? %>
+                  <%= link_to book_path(request.buyer_item.book) do %>
+                    <%= cl_image_tag(request.buyer_item.book.photo.key, crop: :fill, height: 130, width: 82, class: "product-img") %>
+                  <% end %>
+                <% end %>
+                <div>
+                  <p class="medium-title"><span class="bold">Title:</span> <%= request.buyer_item.book.title %></p>
+                  <p class="medium-title"><span class="bold">Author:</span> <%= request.buyer_item.book.author %></p>
+                  <p class="medium-title"><span class="bold">Owner:</span> <%= request.buyer_item.user.first_name %></p>
+                </div>
+              </div>
+              <div class="d-flex justify-content-center p-2 flex-column">
+                <%= image_tag("https://image.flaticon.com/icons/png/512/335/335522.png", crop: :fill, height: 30) %>
+                <% if request.seller_item %>
+                  <p class="small-title"><%= request.buyer_item.distance_to(request.seller_item).round(1) %>km</p>
+                <% end %>
+              </div>
+              <div class="their-book">
+                <% if request.seller_item %>
+                <div>
+                  <p class="medium-title"><span class="bold">Title:</span> <%= request.seller_item.book.title %></p>
+                  <p class="medium-title"><span class="bold">Author:</span> <%= request.seller_item.book.author %></p>
+                  <p class="medium-title"><span class="bold">Owner:</span> <%= request.user.first_name %></p>
+                </div>
+                <div class="d-flex justify-content-end width100">
+                  <% if request.seller_item.book.photo.attached? %>
+                    <%= link_to book_path(request.seller_item.book) do %>
+                      <%= cl_image_tag(request.seller_item.book.photo.key, crop: :fill, height: 130, width: 82, class: "product-img") %>
+                    <% end %>
+                  <% end %>
+                </div>
+                <% else %>
+                  <p><%= request.buyer_item.user.first_name %> has not asked for a book</p>
+                <% end %>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <%= link_to "Delete", request_path(request), method: :delete, class: "btn btn-secondary" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
