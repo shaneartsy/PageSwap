@@ -10,7 +10,7 @@
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
 
-    <%= favicon_link_tag asset_path('PS_icon-01.png', width: 32, height: 32) %>
+    <%= favicon_link_tag asset_path('PWA_favicon.ico', width: 16, height: 16) %>
     <%= stylesheet_pack_tag 'application' %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
@@ -20,7 +20,7 @@
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
      <div class="subcontainer-content">
-      <div class="content-wrap">
+      <div class="content-wrap pt-2">
       <%= yield %>
       </div>
     </div>
