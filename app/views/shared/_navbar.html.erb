@@ -1,10 +1,8 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon z">
-  <div class="ml-1">
+  <div class="ml-1 d-flex align-items-center">
     <%= link_to root_path do %>
       <%= image_tag "PS_icon-01.png", height: '60px', width: '60px' %>
     <% end %>
-</div>
-<div>
   <h1 class="nav-header mr-1">PageSwap</h1>
 </div>
   <% if user_signed_in? && current_user.photo.attached? %>
