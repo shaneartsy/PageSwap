@@ -10,7 +10,6 @@ Rails.application.routes.draw do
   resources :requests, only: [:destroy, :update]
   get 'pages/about_us', to: 'pages#about_us'
   get 'pages/faq', to: 'pages#faq'
-  get 'pages/error', to: 'pages#error'
   get 'requests/dashboard', to: 'requests#dashboard', as: 'dashboard'
   get 'requests/pending_swaps', to: 'requests#pending_swaps', as: 'pending_swaps'
   get 'requests/accepted_swaps', to: 'requests#accepted_swaps', as: 'accepted_swaps'
@@ -36,4 +35,7 @@ Rails.application.routes.draw do
     resources :requests, only: [:create, :new]
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+    get '/404', to: "errors#not_found"
+    get '/422', to: "errors#not_found"
+    get '/500', to: "errors#not_found"
 end
