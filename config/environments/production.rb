@@ -25,6 +25,7 @@ Rails.application.configure do
 
   config.hosts << "www.pageswap.club"
   config.hosts << "pageswap.herokuapp.com"
+
   # Compress CSS using a preprocessor.
   # config.assets.css_compressor = :sass
 
