@@ -21,19 +21,20 @@
         <div class="modal-dialog">
           <div class="modal-content p-3 modal-height">
             <div class="d-flex justify-content-center mt-3">
-              <h5 class="modal-title" id="exampleModalLabel">Add <%= @book.title %> to my bookshelf</h5>
+              <h5 class="modal-title pt-3" id="exampleModalLabel">Add <%= @book.title %> to my bookshelf</h5>
             </div>
             <div class="modal-body d-flex justify-content-between">
               <%= simple_form_for(@item) do |f| %>
                 <%= f.input :quality %>
                 <%= f.input :book, as: :hidden, required: true, autofocus: true, input_html: { :value => @book.id.to_s } %>
-                <%= f.input :available, as: :radio_buttons, label: "Mark as available?" %>
-                <%= f.submit "Add to bookshelf", class: "btn-secondary btn submit" %>
+                <%= f.input :available, as: :radio_buttons, label: "Mark as available?", class: "pt-2 mb-0" %>
+                <div class= "d-flex w-100 justify-content-center">
+                <%= f.submit "Add to bookshelf!", class: "btn-success btn-br mt-2 mb-2 p-2" %>
+                </div>
               <% end %>
             </div>
-            <div class="modal-footer justify-content-between">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <div></div>
+            <div class="modal-footer justify-content-center">
+              <button type="button" class="close-times" data-dismiss="modal"><i class="fas fa-times"></i></button>
             </div>
           </div>
         </div>

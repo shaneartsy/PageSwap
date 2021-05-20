@@ -85,7 +85,7 @@
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="close-times" data-dismiss="modal"><i class="fas fa-times"></i></button>
               <%= link_to "Mark completed", complete_path(request), class: "btn btn-secondary", method: :patch %>
               <%= link_to "Message", user_room_path(request.buyer_item.user), class: "btn btn-secondary" %>
             </div>
