@@ -4,7 +4,7 @@
 <div class="container mt-3">
   <h2>Past Swaps</h2>
   <% @requests.each do |request| %>
-    <% if request.seller_item.user == current_user %>
+    <% if request.buyer_item.user == current_user %>
       <div class="product-card2 d-flex">
         <div>
           <%= render 'shared/profile', user: current_user, item: nil %>
@@ -90,6 +90,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <%= link_to "Message", user_room_path(request.user), class: "btn btn-secondary" %>
                 <%= link_to "Delete", request_path(request), method: :delete, class: "btn btn-secondary" %>
               </div>
             </div>
