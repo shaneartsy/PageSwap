@@ -15,22 +15,22 @@ UserReview.destroy_all
 puts "creating users"
 
 user = User.new(email: 'dg@gmail.com', password: 123456, first_name: "Daniel", address: "400 W 2nd St, Austin, TX 78701")
-file_image = URI.open("https://kitt.lewagon.com/placeholder/users/random")
+file_image = URI.open("https://kitt.lewagon.com/placeholder/users/danielg1177")
 user.photo.attach(io: file_image, filename: "nes.png", content_type: 'image/png')
 user.save
 puts "created Daniel"
 user = User.new(email: 'mm@gmail.com', password: 123456, first_name: "Moshe", address: "2110 E 21st St, Austin, Texas")
-file_image = URI.open("https://kitt.lewagon.com/placeholder/users/random")
+file_image = URI.open("https://kitt.lewagon.com/placeholder/users/moshe9090")
 user.photo.attach(io: file_image, filename: "nes.png", content_type: 'image/png')
 user.save
 puts "created Moshe"
 user = User.new(email: 'hg@gmail.com', password: 123456, first_name: "Hugo", address: "902 Glen Oak Dr, Austin, TX 78745")
-file_image = URI.open("https://kitt.lewagon.com/placeholder/users/random")
+file_image = URI.open("https://kitt.lewagon.com/placeholder/users/Pookleberry")
 user.photo.attach(io: file_image, filename: "nes.png", content_type: 'image/png')
 user.save
 puts "created Hugo"
 user = User.new(email: 'sa@gmail.com', password: 123456, first_name: "Shane", address: "2300 Waterloo City Ln, Austin, Texas")
-file_image = URI.open("https://kitt.lewagon.com/placeholder/users/random")
+file_image = URI.open("https://avatars.githubusercontent.com/u/79791644?v=4")
 user.photo.attach(io: file_image, filename: "nes.png", content_type: 'image/png')
 user.save
 puts "created Shane"
