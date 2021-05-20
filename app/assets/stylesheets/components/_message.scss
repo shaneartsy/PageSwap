@@ -2,16 +2,17 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+  height: 35px;
 }
 
 .user-messages {
   box-shadow: 1px 1px 1px rgba(40,40,40,.2);
-  width: 90%;
+  width: 92%;
   display: flex;
   align-items: center;
   height: 85px;
   margin: 10px auto;
-  border-radius: 5px;
+  border-radius: 8px;
   background-color: white;
 }
 
@@ -29,25 +30,43 @@
   overflow: scroll;
   position: fixed;
   width: 100%;
+  margin-top: 5px;
+}
+
+.form-group {
+  margin-bottom: 0;
+  width: 80vw;
 }
 
 .message-form {
   position: fixed;
   width: 100%;
-  bottom: 10px;
+  display: flex;
+  align-items: center;
+  height: 72px;
+  bottom: 0;
+  margin-bottom: 62px;
+  justify-content: space-around;
+  background-color: #F4F4F4;
 }
 
 .send-button {
   height: 100%;
+  border-radius: 4px;
+  background-color: $green;
+  color: white;
 }
 
 .message-input {
-  height: 100%;
+  height: 35px;
+  border-radius: 7px;
+  width: 250px;
+  margin-right: 20px;
 }
 
 .message-back {
   position: fixed;
-  top: 75px;
+  top: 85px;
   left: 10px;
 }
 

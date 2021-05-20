@@ -1,21 +1,26 @@
 .form-login {
-  width: 100%;
   padding: 10px 20px;
-  background: #E6FFEA;
+  background: #fff;
   margin-top: 20px;
   border-radius: 5px;
   box-shadow: 2px 2px 3px rgba(0,0,0,0.1);
   label {
+    margin: 0 auto;
     margin-top: 5px;
     margin-bottom: -1px;
   }
   .btn {
-    width: 100%;
-    margin-top: -10px;
-    margin-bottom: 15px;
+    width: 210px;
+    margin: 0 auto;
+    margin-top: 5px;
+    margin-bottom: 10px;
   }
   a {
     color: #F07257;
     align: center;
+  }
+  input {
+    margin: 0 auto;
+    margin-bottom: 15px;
   }
 }

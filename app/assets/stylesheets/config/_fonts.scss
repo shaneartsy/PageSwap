@@ -18,7 +18,7 @@ $headers-font: "Nunito", "Helvetica", "sans-serif";
 $RGMed: "Right Grotesk Medium";
 @font-face {
   font-family: $RGMed;
-  src: url('RightGrotesk-Medium.otf') format('opentype');
+  src: asset-url('RightGrotesk-Medium.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }
@@ -27,7 +27,7 @@ $RGMed: "Right Grotesk Medium";
 $RGSBlack: "Right Grotesk Spatial Black";
 @font-face {
   font-family: $RGSBlack;
-  src: url('RightGrotesk-SpatialBlack.otf') format('opentype');
+  src: asset-url('RightGrotesk-SpatialBlack.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }
@@ -35,7 +35,7 @@ $RGSBlack: "Right Grotesk Spatial Black";
 $Souvenir: "Souvenir STD Light";
 @font-face {
   font-family: $Souvenir;
-  src: url('SouvenirStd-Light.otf') format('opentype');
+  src: asset-url('SouvenirStd-Light.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }
@@ -43,7 +43,7 @@ $Souvenir: "Souvenir STD Light";
 $Raisonne: "Raisonne Demi-Bold";
 @font-face {
   font-family: $Raisonne;
-  src: url('Raisonne-DemiBold.ttf') format('truetype');
+  src: asset-url('Raisonne-DemiBold.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }

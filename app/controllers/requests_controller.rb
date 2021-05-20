@@ -49,7 +49,8 @@ class RequestsController < ApplicationController
   end
 
   def pending_swaps
-    @requests = Request.where(status: 'pending').sort { |a, b| a.buyer_item.book.title <=> b.buyer_item.book.title }
+    @requests = Request.where(status: 'pending').sort_by { |request| request.updated_at }
+    @requests.reverse!
     @items = []
     CatalogItem.where(user: current_user).each do |item|
       @items << [item.book.title, item.id]
@@ -57,11 +58,43 @@ class RequestsController < ApplicationController
   end
 
   def accepted_swaps
-    @requests = Request.where(status: 'accepted').sort { |a, b| a.buyer_item.book.title <=> b.buyer_item.book.title }
+    @requests = Request.where(status: 'accepted').sort_by { |request| request.updated_at }
+    @requests.reverse!
   end
 
   def declined_swaps
-    @requests = Request.where(status: 'declined').sort { |a, b| a.buyer_item.book.title <=> b.buyer_item.book.title }
+    @requests = Request.where(status: 'declined').sort_by { |request| request.updated_at }
+    @requests.reverse!
+  end
+
+  def past_swaps
+    @requests = Request.where(status: 'completed').sort_by { |request| request.updated_at }
+    @requests.reverse!
+  end
+
+  def my_accepted_swaps
+    @requests = Request.where(status: 'accepted', user: current_user).sort_by { |request| request.updated_at }
+    @requests.reverse!
+  end
+
+  def my_pending_swaps
+    @requests = Request.where(status: 'pending', user: current_user).sort_by { |request| request.updated_at }
+    @requests.reverse!
+    @items = []
+    catalog = current_user.catalog_items.filter { |item| item.available == true }
+    catalog.each do |item|
+      @items << [item.book.title, item.id]
+    end
+  end
+
+  def my_declined_swaps
+    @requests = Request.where(status: 'declined', user: current_user).sort_by { |request| request.updated_at }
+    @requests.reverse!
+  end
+
+  def my_past_swaps
+    @requests = Request.where(status: 'completed', user: current_user).sort_by { |request| request.updated_at }
+    @requests.reverse!
   end
 
   def destroy
