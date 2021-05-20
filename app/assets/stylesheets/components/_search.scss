@@ -1,5 +1,7 @@
 .form-control {
-  background-color: #F4F4F4;
+  background-color: #white;
+  width: 85%;
+  margin-bottom: 5px;
 }
 
 .search-form input {
@@ -8,7 +10,7 @@
 
 .search-form2 form.search-bar input {
   border: none;
-  background-color: #F4F4F4;
+  background-color: white;
 }
 
 .search-form input:focus {
@@ -38,6 +40,8 @@
   width: 250px;
   justify-content: space-between;
   padding: 10px;
+  margin-bottom: 10px;
+  background-color: white;
 }
 
 .btn-search {

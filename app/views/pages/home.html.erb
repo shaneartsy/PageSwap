@@ -1,5 +1,5 @@
 <div class="background">
-  <div class="d-flex align-items-center flex-column search-form">
+  <div class="d-flex align-items-center flex-column search-form pb-4">
     <h1 class="home-header mt-4 mb-4">Read, Swap, Repeat.</h1>
 
     <%= form_tag root_path, method: :get, html: { autocomplete: "off" }, class: "search-bar" do %>
@@ -56,23 +56,23 @@
       <% end %>
     <% end %>
   <% else %>
-    <h2 class="mt-3">Recent Trades</h2>
+    <h2 class="home-text mb-0">Recent Trades</h2>
     <div id="carouselExampleControls" class="carousel mt-3 slide" data-ride="carousel" data-interval="6000">
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <div class="car-cards p-3 d-flex">
+          <div class="car-cards p-1 d-flex">
             <%= render 'c-card', request: @requests[0]%>
             <%= render 'c-card', request: @requests[1]%>
           </div>
         </div>
         <div class="carousel-item">
-          <div class="car-cards p-3 d-flex">
+          <div class="car-cards p-1 d-flex">
             <%= render 'c-card', request: @requests[2]%>
             <%= render 'c-card', request: @requests[3]%>
           </div>
         </div>
         <div class="carousel-item">
-          <div class="car-cards p-3 d-flex">
+          <div class="car-cards p-1 d-flex">
             <%= render 'c-card', request: @requests[4]%>
             <%= render 'c-card', request: @requests[5]%>
           </div>
