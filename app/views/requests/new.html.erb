@@ -1,6 +1,6 @@
 
   <div class="container">
-    <%= simple_form_for([@buyer_item, @request]) do |form| %>
+    <%= simple_form_for [@buyer_item, @request], html: { class: "d-flex flex-column align-items-center mt-3 swap-form" } do |form| %>
       <%= form.input :seller_item, collection: @my_items, label: "Suggest Swap", label_method: -> (x)  { x.book.title } %>
       <%= form.input :buyer_item, input_html: {value: @buyer_item.id, label_method: -> (x)  { x.book.title }}, disabled: true, as: :hidden %>
 
@@ -8,6 +8,6 @@
         <%= f.input :buyer_item, label: "Requested book" , input_html: {value: @buyer_item.book.title, label_method: -> (x)  { x.book.title }}, disabled: true %>
       <% end %>
 
-      <%= form.submit %>
+      <%= form.submit "Request Swap", class: "btn btn-primary mt-3" %>
     <% end %>
   </div>

@@ -1,5 +1,6 @@
 class CatalogItemsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
+
   def index
     @user = User.find(params[:user_id])
     @items = @user.catalog_items
@@ -130,7 +131,7 @@ class CatalogItemsController < ApplicationController
       @item.user = current_user
       @item.address = current_user.address
       if @item.save
-        redirect_to dashboard_path
+        redirect_to my_books_path
       else
         @results = []
         render :new

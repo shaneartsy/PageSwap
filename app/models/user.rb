@@ -23,8 +23,10 @@ class User < ApplicationRecord
 
   def average_rating
     ratings = received_reviews.map { |review| review.rating}
-    ratings_sum = ratings.sum
-    ratings_count = ratings.count
-    ratings_devied = ratings_sum / ratings.count
+    if ratings.empty?
+      0
+    else
+      ratings.sum / ratings.count
+    end
   end
 end

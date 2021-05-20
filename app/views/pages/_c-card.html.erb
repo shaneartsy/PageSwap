@@ -1,7 +1,8 @@
 <div class="c-card">
 
   <% hour = (DateTime.now.hour - 3) - request.updated_at.hour %>
-    <% (DateTime.now.month == request.updated_at.month && DateTime.now.day == request.updated_at.day) ? (hour == 0 ? now = "Traded now" : now = "Traded #{hour}hr#{hour == 1 ? "" : "s"} ago") : now = request.updated_at.strftime("Traded on %m/%d/%Y") %>
+  <% days = DateTime.now.day - request.updated_at.day %>
+    <% (DateTime.now.month == request.updated_at.month && DateTime.now.day == request.updated_at.day) ? (hour == 0 ? now = "Traded now" : now = "Traded #{hour}hr#{hour == 1 ? "" : "s"} ago") : now = "Traded #{days} day#{days == 1 ? "" : "s"} ago" %>
   <h5 class="c-title" id="exampleModalLabel"><%= now %></h5>
 
   <div class="d-flex justify-content-between align-items-center">
