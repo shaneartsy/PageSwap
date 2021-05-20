@@ -8,11 +8,11 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @coffee_shops = []
     @book.catalog_items.each do |item|
-      if Coffee.near([item.latitude, item.longitude], 3)
-        @coffee_shops << [item, Coffee.near([item.latitude, item.longitude], 3)]
+      if Coffee.near([item.latitude, item.longitude], 15)
+        @coffee_shops << [item, Coffee.near([item.latitude, item.longitude], 15)]
       end
     end
-    @coffee_shops.filter! { |shop| (current_user.distance_to([shop[1][0].latitude, shop[1][0].longitude]) < 4) && shop[0].user != current_user }
+    @coffee_shops.filter! { |shop| shop[0].user != current_user }
     if params[:ci_id]
       @catalog_item = CatalogItem.find(params[:ci_id])
     end
@@ -23,7 +23,6 @@ class BooksController < ApplicationController
     if @book.save
       flash[:notice] = "Book has been added"
       redirect_to dashboard_path
-      # redirect_to dashboard_inventory_path
     else
       render :new
     end
