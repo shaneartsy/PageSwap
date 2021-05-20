@@ -33,6 +33,10 @@ user = User.new(email: 'sa@gmail.com', password: 123456, first_name: "Shane", ad
 file_image = URI.open("https://avatars.githubusercontent.com/u/79791644?v=4")
 user.photo.attach(io: file_image, filename: "nes.png", content_type: 'image/png')
 user.save
+user = User.new(email: 'th@gmail.com', password: 123456, first_name: "Tagel", address: "2300 Waterloo City Ln, Austin, Texas")
+file_image = URI.open("https://bit.ly/3u3wjjF")
+user.photo.attach(io: file_image, filename: "nes.png", content_type: 'image/png')
+user.save
 puts "created Shane"
 
 
@@ -51,7 +55,7 @@ end
 
 puts "finished creating user reviews"
 
-puts "Creatign coffee shop seeds"
+puts "Creating coffee shop seeds"
 
 
 coffee_shops = [{"business_id": "sxJG2vDnCMBTRq32GObUXg","name": "Starbucks","address": "516 W Oltorf","city": "Austin","state": "TX","postal_code": "78704","latitude": 30.242174,"longitude": -97.758917},
