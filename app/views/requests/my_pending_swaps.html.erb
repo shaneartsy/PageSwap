@@ -24,7 +24,7 @@
 
           <div class="d-flex justify-content-center align-items-center flex-column">
             <% if request.seller_item %>
-              <p class="small-title"><%= request.buyer_item.distance_to(request.seller_item).round(1) %>km</p>
+              <p class="small-title"><%= request.buyer_item.distance_to(request.user).round(1) %>km</p>
             <% end %>
             <%= image_tag("https://image.flaticon.com/icons/png/512/335/335522.png", crop: :fill, height: 15, width: 15) %>
           </div>

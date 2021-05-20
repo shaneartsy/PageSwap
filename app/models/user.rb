@@ -26,9 +26,7 @@ class User < ApplicationRecord
     if ratings.empty?
       0
     else
-      ratings_sum = ratings.sum
-      ratings_count = ratings.count
-      ratings_devied = ratings_sum / ratings.count
+      ratings.sum / ratings.count
     end
   end
 end
