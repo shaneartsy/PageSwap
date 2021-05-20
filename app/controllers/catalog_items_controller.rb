@@ -130,7 +130,7 @@ class CatalogItemsController < ApplicationController
       @item.user = current_user
       @item.address = current_user.address
       if @item.save
-        redirect_to dashboard_path
+        redirect_to my_books_path
       else
         @results = []
         render :new

@@ -1,12 +1,18 @@
 <div data-toggle="modal" data-target="#user-<%= user.id %>">
-  <%= cl_image_tag user.photo.key, height: '45px', width: '45px', class: "avatar" %>
+  <% if user.photo.attached? %>
+    <%= cl_image_tag user.photo.key, height: '45px', width: '45px', class: "avatar" %>
+  <% else %>
+    <%= image_tag "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXwVMBH75TaekX3rtcgkfKaoMOUHvTc2C17g&usqp=CAU", height: '50px', width: '50px', class: "avatar" %>
+  <% end %>
 </div>
 
 <div class="modal fade" id="user-<%= user.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content modal-height">
       <div class="d-flex justify-content-around align-items-center p-2 mt-3">
-        <%= cl_image_tag user.photo.key, height: '50px', width: '50px', class: "avatar" %>
+        <% if user.photo.attached? %>
+          <%= cl_image_tag user.photo.key, height: '50px', width: '50px', class: "avatar" %>
+        <% end %>
       </div>
       <div class="modal-body">
         <div class="profile-top">
