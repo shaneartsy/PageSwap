@@ -63,9 +63,9 @@
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               <% if item.available %>
-                <%= link_to "Make unavailable", make_unavailable_path(item), class: "btn btn-secondary", method: :patch %>
+                <%= link_to "Make unavailable", make_unavailable_path(item), class: "btn btn-danger btn-br", method: :patch %>
               <% else %>
-                <%= link_to "Make available", make_available_path(item), class: "btn btn-secondary", method: :patch %>
+                <%= link_to "Make available", make_available_path(item), class: "btn btn-success btn-br", method: :patch %>
               <% end %>
               <%= link_to "Remove", catalog_item_path(item), class: "btn btn-secondary", method: :delete %>
             </div>
