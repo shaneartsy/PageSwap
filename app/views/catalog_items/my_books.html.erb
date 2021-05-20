@@ -44,7 +44,8 @@
       <div class="modal fade" id="modal-<%= item.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
-            <div class="d-flex justify-content-center mt-3">
+              <button type="button" class="close-times" data-dismiss="modal"><i class="fas fa-times"></i></button>
+            <div class="d-flex justify-content-center mt-5">
               <h5 class="modal-title" id="exampleModalLabel"><%= item.book.title %></h5>
             </div>
             <div class="modal-body mt-2 center p-3 d-flex flex-column align-items-center">
@@ -52,7 +53,7 @@
                 <%= cl_image_tag(item.book.photo.key, crop: :fill, height: 150, class: "product-img") %>
               <% end %>
 
-              <p class="text-center">Title: <%= item.book.title %></p>
+              <p class="text-center mt-3 mb-1">Title: <%= item.book.title %></p>
               <p>Author: <%= item.book.author %></p>
               <% if item.available %>
                 <p>Available</p>
@@ -61,13 +62,12 @@
               <% end %>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               <% if item.available %>
                 <%= link_to "Make unavailable", make_unavailable_path(item), class: "btn btn-danger btn-br", method: :patch %>
               <% else %>
                 <%= link_to "Make available", make_available_path(item), class: "btn btn-success btn-br", method: :patch %>
               <% end %>
-              <%= link_to "Remove", catalog_item_path(item), class: "btn btn-secondary", method: :delete %>
+              <%= link_to "Remove", catalog_item_path(item), class: "btn btn-danger btn-br btn-br-remove", method: :delete %>
             </div>
             <div>
               <a class="nav-link dropdown-toggle btn-info" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Condition</a>

@@ -37,9 +37,31 @@
 }
 
 .close-times {
+  background-color: transparent;
+  border: none;
   font-size: 20px;
-  align-items: right;
-  margin-right: 10px;
-  margin-top: 10px;
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  // margin-right: 10px;
+  // margin-top: 10px;
+  color: #3b3b3b;
+}
+
+// .remove-trash {
+//   background-color: transparent;
+//   color: #E8867C;
+//   border: none;
+//   font-size: 20px;
+//   margin-right: 10px;
+//   // margin-top: 10px;
+// }
+
+.btn-br-remove {
+  background-color: #E8867C;
+  border: none;
+}
+
+.text-tabs {
   color: #3b3b3b;
 }
