@@ -1,12 +1,15 @@
-<ul class="nav nav-pills mt-3 justify-content-center">
+<div class="create mt-2 mb-4">
+  <%= link_to "+ ADD TO BOOKSHELF", new_catalog_item_path, class: "btn-success py-2 btn-br px-3 d-flex justify-content-center" %>
+</div>
+<ul class="nav nav-pills mt-3 justify-content-around mx-5 mb-4">
   <li class="nav-item dropdown">
 
-    <a class="nav-link dropdown-toggle btn-info" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">My Books</a>
+    <a class="dropdown-toggle btn-info btn-br p-3" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">My Books</a>
       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <%= link_to "My Books", my_books_path, class: "dropdown-item" %>
+        <%= link_to "My Bookshelf", my_books_path, class: "dropdown-item" %>
         <%= link_to "Pending Swaps", pending_swaps_path, class: "dropdown-item" %>
         <%= link_to "Accepted Swaps", accepted_swaps_path, class: "dropdown-item" %>
-        <%= link_to "Rejected Swaps", declined_swaps_path, class: "dropdown-item" %>
+        <%= link_to "Declined Swaps", declined_swaps_path, class: "dropdown-item" %>
         <%= link_to "Past Swaps", past_swaps_path, class: "dropdown-item" %>
       <!-- <li class="nav-item btn-light">
         <a class="nav-link" href="/">Back to browse</a>
@@ -15,18 +18,15 @@
   </li>
   <li class="nav-item dropdown">
 
-    <a class="nav-link dropdown-toggle btn-info" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">My Requested</a>
+    <a class="dropdown-toggle btn-info btn-br p-3" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">My Requests</a>
       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <%= link_to "Pending Swaps", my_pending_swaps_path, class: "dropdown-item" %>
-        <%= link_to "Accepted Swaps", my_accepted_swaps_path, class: "dropdown-item" %>
-        <%= link_to "Rejected Swaps", my_declined_swaps_path, class: "dropdown-item" %>
-        <%= link_to "Past Swaps", my_past_swaps_path, class: "dropdown-item" %>
+        <%= link_to "My Pending Requests", my_pending_swaps_path, class: "dropdown-item" %>
+        <%= link_to "My Accepted Requests", my_accepted_swaps_path, class: "dropdown-item" %>
+        <%= link_to "My Rejected Requests", my_declined_swaps_path, class: "dropdown-item" %>
+        <%= link_to "My Past Requests", my_past_swaps_path, class: "dropdown-item" %>
       <!-- <li class="nav-item btn-light">
         <a class="nav-link" href="/">Back to browse</a>
       </li> -->
     </div>
   </li>
 </ul>
-<div class="create mt-3">
-  <%= link_to "+ ADD BOOK", new_catalog_item_path, class: "btn-success p-2 btn-br" %>
-</div>
