@@ -2,7 +2,7 @@
   <!-- <%= link_to "About Us", pages_about_us_path, class: "btn-footer" %> -->
   <!-- <%= link_to "FAQ", pages_faq_path, class: "btn-footer" %> -->
 
-  <a href="/" class="footer-nav-link <%= 'footer-nav-link--active' if user_signed_in? && current_page?(controller: 'pages', action: 'home') %>">
+  <a href="/" class="footer-nav-link <%= 'footer-nav-link--active' if current_page?('/') %>">
     <i class="material-icons-round nav__icon">home</i>
     <span class="nav__text">Home</span>
   </a>

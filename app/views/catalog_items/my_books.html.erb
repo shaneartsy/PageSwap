@@ -22,9 +22,9 @@
 
                 <div class="d-flex">
                   <% if item.available %>
-                    <p class="bold">Available</p>
+                    <p class="green">Available</p>
                   <% else %>
-                    <p class="bold">Unavailable</p>
+                    <p class="red">Unavailable</p>
                   <% end %>
                 </div>
 
@@ -56,9 +56,9 @@
               <p class="text-center mt-3 mb-1">Title: <%= item.book.title %></p>
               <p>Author: <%= item.book.author %></p>
               <% if item.available %>
-                <p>Available</p>
+                <p class="green">Available</p>
               <% else %>
-                <p>Unavailable</p>
+                <pclass="red">Unavailable</p>
               <% end %>
             </div>
             <div class="modal-footer">

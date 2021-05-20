@@ -45,7 +45,7 @@
         <div class="modal-dialog">
           <div class="modal-content modal-height">
             <div class="d-flex justify-content-center mt-3">
-              <% hour = (DateTime.now.hour - 3) - request.updated_at.hour %>
+              <% hour = (DateTime.now.hour) - request.updated_at.hour %>
               <% days = DateTime.now.day - request.updated_at.day %>
               <% (DateTime.now.month == request.updated_at.month && DateTime.now.day == request.updated_at.day) ? (hour == 0 ? now = "Accepted now" : now = "Accepted #{hour}hr#{hour == 1 ? "" : "s"} ago") : now = "Traded #{days} day#{days == 1 ? "" : "s"} ago" %>
               <h5 class="modal-title" id="exampleModalLabel"><%= now %></h5>
