@@ -4,7 +4,11 @@
       <%= link_to show_room_path(room) do %>
         <div class="user-messages">
           <div class="width100p">
-            <%= cl_image_tag room.user2.photo.key, height: '50px', width: '50px', class: "avatar" %>
+            <% if room.user2.photo.attached? %>
+              <%= cl_image_tag room.user2.photo.key, height: '50px', width: '50px', class: "avatar" %>
+            <% else %>
+              <%= image_tag "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXwVMBH75TaekX3rtcgkfKaoMOUHvTc2C17g&usqp=CAU", height: '50px', width: '50px', class: "avatar" %>
+            <% end %>
           </div>
           <div class="index-name">
               <h4 class="m-0 chat-index"><%= room.user2.first_name %></h4>
